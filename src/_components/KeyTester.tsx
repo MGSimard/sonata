@@ -18,25 +18,21 @@ export const KeyTester = () => {
     const pressedKeys = new Set<string>();
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log("Event:", e);
-      console.log("Key:", e.key);
       console.log("Code:", e.code);
-      console.log("CharCode:", e.charCode);
-      console.log("KeyCode:", e.keyCode);
 
-      // if (!keyMap[e.key as keyof typeof keyMap] || pressedKeys.has(e.key)) return;
-      // pressedKeys.add(e.key);
-      // const [flatNote, sharpNote] = keyMap[e.key as keyof typeof keyMap];
-      // if (e.shiftKey && sharpNote) {
-      //   console.log("Sharp Note:", noteMap[sharpNote + transpose]);
-      // } else if (flatNote) {
-      //   console.log("Flat Note:", noteMap[flatNote + transpose]);
-      // }
+      if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
+      pressedKeys.add(e.code);
+      const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
+      if (e.shiftKey && sharpNote) {
+        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
+      } else if (flatNote) {
+        console.log("Flat Note:", noteMap[flatNote + transpose]);
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (!keyMap[e.key as keyof typeof keyMap]) return;
-      pressedKeys.delete(e.key);
+      if (!keyMap[e.code as keyof typeof keyMap]) return;
+      pressedKeys.delete(e.code);
     };
 
     window.addEventListener("keydown", handleKeyDown, { signal });
