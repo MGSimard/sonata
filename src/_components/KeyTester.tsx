@@ -5,6 +5,8 @@ export const KeyTester = () => {
   // Even though it could be numbers all the way down, I need noteMap strings
   // for key identifiers on UI if I choose to display them.
 
+  const transpose = 0; // -12 to +12
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -16,9 +18,9 @@ export const KeyTester = () => {
       pressedKeys.add(e.code);
       const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
       if (e.shiftKey && sharpNote) {
-        console.log("Sharp Note:", noteMap[sharpNote]);
+        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
       } else if (flatNote) {
-        console.log("Flat Note:", noteMap[flatNote]);
+        console.log("Flat Note:", noteMap[flatNote + transpose]);
       }
     };
 
