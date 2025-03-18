@@ -9,6 +9,9 @@
 - Prevent out of bounds
 - Sustain OFF = same file but fade out early?
 - Base C2 -> C7, support -12 + 12? (C1-C8)
+- e.keyCode & e.charCode are deprecated
+- e.code maps to physical key
+- e.key maps to mapped key (final output)
 
 ## Resources
 

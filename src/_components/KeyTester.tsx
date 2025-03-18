@@ -2,8 +2,12 @@ import { useEffect, Fragment } from "react";
 import { noteMap, keyMap } from "@/_utils/maps";
 
 export const KeyTester = () => {
-  // Even though it could be numbers all the way down, I need noteMap strings
-  // for key identifiers on UI if I choose to display them.
+  /* NOTES
+   * e.keyCode is deprecated
+   * e.charCode is deprecated
+   * e.code maps to physical key
+   * e.key maps to mapped key (final output)
+   */
 
   const transpose = 0; // -12 to +12
 
@@ -14,20 +18,25 @@ export const KeyTester = () => {
     const pressedKeys = new Set<string>();
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log("KeyDown:", e.code);
-      if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
-      pressedKeys.add(e.code);
-      const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
-      if (e.shiftKey && sharpNote) {
-        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
-      } else if (flatNote) {
-        console.log("Flat Note:", noteMap[flatNote + transpose]);
-      }
+      console.log("Event:", e);
+      console.log("Key:", e.key);
+      console.log("Code:", e.code);
+      console.log("CharCode:", e.charCode);
+      console.log("KeyCode:", e.keyCode);
+
+      // if (!keyMap[e.key as keyof typeof keyMap] || pressedKeys.has(e.key)) return;
+      // pressedKeys.add(e.key);
+      // const [flatNote, sharpNote] = keyMap[e.key as keyof typeof keyMap];
+      // if (e.shiftKey && sharpNote) {
+      //   console.log("Sharp Note:", noteMap[sharpNote + transpose]);
+      // } else if (flatNote) {
+      //   console.log("Flat Note:", noteMap[flatNote + transpose]);
+      // }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (!keyMap[e.code as keyof typeof keyMap]) return;
-      pressedKeys.delete(e.code);
+      if (!keyMap[e.key as keyof typeof keyMap]) return;
+      pressedKeys.delete(e.key);
     };
 
     window.addEventListener("keydown", handleKeyDown, { signal });
