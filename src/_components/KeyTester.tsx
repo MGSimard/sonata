@@ -13,7 +13,7 @@ export const KeyTester = () => {
 
   // If shifting and valid shift match exist play that sharp note, otherwise play the flat note
   // This just so happens to allow players to play a sharp and a flat at the same time if the flat
-  // doesn't have a sharp counterpart.
+  // doesn't have a sharp counterpart. This is better than just not playing the flat note at all.
 
   const keyMap = {
     Digit1: [0, 1],
