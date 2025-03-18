@@ -21,6 +21,7 @@
 
 ## Future Considerations
 
+- [ ] Metronome
 - [ ] Establish sheet music conventions
 - [ ] Adding sheet music (Author, title, tempo, core genre)
 - [ ] MIDI Support
