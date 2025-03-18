@@ -12,7 +12,7 @@
 - [ ] Sustain (On/Off/Hold)
 - [ ] Note history
 - [ ] Volume control
-- [ ] Note transposition setting
+- [ ] Note transposition setting (-12, +12)
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
