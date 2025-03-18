@@ -136,6 +136,7 @@ export const KeyTester = () => {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      if (!keyMap[e.code as keyof typeof keyMap]) return;
       pressedKeys.delete(e.code);
     };
 
