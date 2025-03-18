@@ -55,10 +55,15 @@ export const KeyTester = () => {
   };
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!keyMap[event.code as keyof typeof keyMap]) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!keyMap[e.code as keyof typeof keyMap]) return;
+      const [note, sharpNote] = keyMap[e.code as keyof typeof keyMap];
 
-      console.log(keyMap[event.code as keyof typeof keyMap]);
+      if (e.shiftKey && sharpNote) {
+        console.log("Valid Key, Shifted:", sharpNote);
+      } else {
+        console.log("Valid Key:", note);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
