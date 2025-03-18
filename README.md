@@ -1,5 +1,14 @@
 # Sonata
 
+## Notes
+
+- Notes 1-88
+- Keyboard keys to nums
+- Apply transpose calc
+- Get matching note
+- Prevent out of bounds
+- Sustain OFF = same file but fade out early?
+
 ## Task List
 
 - [ ] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
