@@ -55,15 +55,14 @@ export const KeyTester = () => {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     const handleKeyDown = (event: KeyboardEvent) => {
-      console.log("Shift?", event.shiftKey);
-      console.log(event.code);
-    };
-    window.addEventListener("keydown", handleKeyDown, { signal });
+      if (!keyMap[event.code as keyof typeof keyMap]) return;
 
-    return () => controller.abort();
+      console.log(keyMap[event.code as keyof typeof keyMap]);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return <div>KeyTester</div>;
