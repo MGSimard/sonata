@@ -11,6 +11,10 @@ export const KeyTester = () => {
   // 1!2@34$5%6^78*9(0qQwWeErtTyYuiIoOpPasSdDfgGhHjJklLzZxcCvVbBnm
   // (Matches physical piano layout)
 
+  // If shifting and valid shift match exist play that sharp note, otherwise play the flat note
+  // This just so happens to allow players to play a sharp and a flat at the same time if the flat
+  // doesn't have a sharp counterpart.
+
   const keyMap = {
     Digit1: [0, 1],
     Digit2: [2, 3],
@@ -54,6 +58,7 @@ export const KeyTester = () => {
     const controller = new AbortController();
     const signal = controller.signal;
     const handleKeyDown = (event: KeyboardEvent) => {
+      console.log("Shift?", event.shiftKey);
       console.log(event.code);
     };
     window.addEventListener("keydown", handleKeyDown, { signal });
