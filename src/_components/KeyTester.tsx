@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import { noteMap, keyMap } from "@/_utils/maps";
 
 export const KeyTester = () => {
@@ -14,6 +14,7 @@ export const KeyTester = () => {
     const pressedKeys = new Set<string>();
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      console.log("KeyDown:", e.code);
       if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
       pressedKeys.add(e.code);
       const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
