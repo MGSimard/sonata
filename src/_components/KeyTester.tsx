@@ -16,42 +16,44 @@ export const KeyTester = () => {
   // doesn't have a sharp counterpart. This is better than just not playing the flat note at all.
 
   const keyMap = {
-    Digit1: [0, 1],
-    Digit2: [2, 3],
-    Digit3: [4, null],
-    Digit4: [5, 6],
-    Digit5: [7, 8],
-    Digit6: [9, 10],
-    Digit7: [11, null],
-    Digit8: [12, 13],
-    Digit9: [14, 15],
-    Digit0: [16, null],
-    KeyQ: [17, 18],
-    KeyW: [19, 20],
-    KeyE: [21, 22],
-    KeyR: [23, null],
-    KeyT: [24, 25],
-    KeyY: [26, 27],
-    KeyU: [28, null],
-    KeyI: [29, 30],
-    KeyO: [31, 32],
-    KeyP: [33, 34],
-    KeyA: [35, null],
-    KeyS: [36, 37],
-    KeyD: [38, 39],
-    KeyF: [40, null],
-    KeyG: [41, 42],
-    KeyH: [43, 44],
-    KeyJ: [45, 46],
-    KeyK: [47, null],
-    KeyL: [48, 49],
-    KeyZ: [50, 51],
-    KeyX: [52, null],
-    KeyC: [53, 54],
-    KeyV: [55, 56],
-    KeyB: [57, 58],
-    KeyN: [59, null],
-    KeyM: [60, null],
+    // We start at 12 since our base note is C2
+    // Transposition allows -+12, so -12 transpose would make our base not 0 (C1)
+    Digit1: [12, 13], // C2, C#2
+    Digit2: [14, 15], // D2, D#2
+    Digit3: [16, null], // E2
+    Digit4: [17, 18], // F2, F#2
+    Digit5: [19, 20], // G2, G#2
+    Digit6: [21, 22], // A2, A#2
+    Digit7: [23, null], // B2
+    Digit8: [24, 25], // C3, C#3
+    Digit9: [26, 27], // D3, D#3
+    Digit0: [28, null], // E3
+    KeyQ: [29, 30], // F3, F#3
+    KeyW: [31, 32], // G3, G#3
+    KeyE: [33, 34], // A3, A#3
+    KeyR: [35, null], // B3
+    KeyT: [36, 37], // C4, C#4
+    KeyY: [38, 39], // D4, D#4
+    KeyU: [40, null], // E4
+    KeyI: [41, 42], // F4, F#4
+    KeyO: [43, 44], // G4, G#4
+    KeyP: [45, 46], // A4, A#4
+    KeyA: [47, null], // B4
+    KeyS: [48, 49], // C5, C#5
+    KeyD: [50, 51], // D5, D#5
+    KeyF: [52, null], // E5
+    KeyG: [53, 54], // F5, F#5
+    KeyH: [55, 56], // G5, G#5
+    KeyJ: [57, 58], // A5, A#5
+    KeyK: [59, null], // B5
+    KeyL: [60, 61], // C6, C#6
+    KeyZ: [62, 63], // D6, D#6
+    KeyX: [64, null], // E6
+    KeyC: [65, 66], // F6, F#6
+    KeyV: [67, 68], // G6, G#6
+    KeyB: [69, 70], // A6, A#6
+    KeyN: [71, null], // B6
+    KeyM: [72, null], // C7
   };
 
   useEffect(() => {
