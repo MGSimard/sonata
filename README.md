@@ -13,7 +13,7 @@
 - [ ] Note transposition setting
 - [ ] ...
 - [ ] Piano popout?
-- [ ] Sheet music popout
+- [ ] Sheet music popout (Forced on-top)
 - [ ] ...
 - [ ] Metadata assets
 - [ ] Finalize index.html metadata
