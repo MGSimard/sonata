@@ -8,6 +8,7 @@
 - Get matching note
 - Prevent out of bounds
 - Sustain OFF = same file but fade out early?
+- Base C2 -> C7, support -12 + 12? (C1-C8)
 
 ## Task List
 
