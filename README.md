@@ -8,6 +8,7 @@
 - [ ] Color palette (Both Light & Dark Modes)
 - [ ] ...
 - [ ] Core Piano functions
+- [ ] Sustain (On/Off/Hold)
 - [ ] Note history
 - [ ] Volume control
 - [ ] Note transposition setting
