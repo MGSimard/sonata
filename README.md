@@ -3,6 +3,7 @@
 ## Task List
 
 - [ ] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
+- [ ] Consider tone.js
 - [ ] ...
 - [ ] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
