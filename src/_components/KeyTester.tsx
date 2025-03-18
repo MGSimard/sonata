@@ -7,6 +7,49 @@ export const KeyTester = () => {
   // the letters on the piano to match later but that's fine. Additional UX could be translating sheet
   // music across keyboard layouts, with regular QWERTY being the default.
 
+  // Valid keys are:
+  // 1!2@34$5%6^78*9(0qQwWeErtTyYuiIoOpPasSdDfgGhHjJklLzZxcCvVbBnm
+  // (Matches physical piano layout)
+
+  const keyMap = {
+    Digit1: [0, 1],
+    Digit2: [2, 3],
+    Digit3: [4, null],
+    Digit4: [5, 6],
+    Digit5: [7, 8],
+    Digit6: [9, 10],
+    Digit7: [11, null],
+    Digit8: [12, 13],
+    Digit9: [14, 15],
+    Digit0: [16, null],
+    KeyQ: [17, 18],
+    KeyW: [19, 20],
+    KeyE: [21, 22],
+    KeyR: [23, null],
+    KeyT: [24, 25],
+    KeyY: [26, 27],
+    KeyU: [28, null],
+    KeyI: [29, 30],
+    KeyO: [31, 32],
+    KeyP: [33, 34],
+    KeyA: [35, null],
+    KeyS: [36, 37],
+    KeyD: [38, 39],
+    KeyF: [40, null],
+    KeyG: [41, 42],
+    KeyH: [43, 44],
+    KeyJ: [45, 46],
+    KeyK: [47, null],
+    KeyL: [48, 49],
+    KeyZ: [50, 51],
+    KeyX: [52, null],
+    KeyC: [53, 54],
+    KeyV: [55, 56],
+    KeyB: [57, 58],
+    KeyN: [59, null],
+    KeyM: [60, null],
+  };
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
