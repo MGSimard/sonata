@@ -55,9 +55,16 @@ export const KeyTester = () => {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const pressedKeys = new Set<string>();
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!keyMap[e.code as keyof typeof keyMap]) return;
+      if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
       const [note, sharpNote] = keyMap[e.code as keyof typeof keyMap];
+
+      pressedKeys.add(e.code);
 
       if (e.shiftKey && sharpNote) {
         console.log("Valid Key, Shifted:", sharpNote);
@@ -66,8 +73,13 @@ export const KeyTester = () => {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    const handleKeyUp = (e: KeyboardEvent) => {
+      pressedKeys.delete(e.code);
+    };
+
+    window.addEventListener("keydown", handleKeyDown, { signal });
+    window.addEventListener("keyup", handleKeyUp, { signal });
+    return () => controller.abort();
   }, []);
 
   return <div>KeyTester</div>;
