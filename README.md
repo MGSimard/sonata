@@ -10,6 +10,13 @@
 - Sustain OFF = same file but fade out early?
 - Base C2 -> C7, support -12 + 12? (C1-C8)
 
+## Resources
+
+- Web Audio API: https://www.w3.org/TR/webaudio-1.1/
+- Web Audio API https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API
+- Tone.js https://tonejs.github.io/
+- VirtualPiano https://virtualpiano.net/
+
 ## Task List
 
 - [ ] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
