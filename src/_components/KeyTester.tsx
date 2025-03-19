@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState, useRef, type Dispatch, type SetStateAction } from "react";
 import * as Tone from "tone";
 import { getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
-import reportWebVitals from "@/reportWebVitals";
 
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
@@ -19,7 +18,7 @@ export const KeyTester = () => {
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
   const isPointerDown = useRef<boolean>(false);
-  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  const synth = useRef<Tone.PolySynth>(new Tone.PolySynth(Tone.Synth).toDestination());
 
   // Helper functions for note management
   const addActiveNote = (noteIndex: NoteIndex) => {
@@ -57,13 +56,8 @@ export const KeyTester = () => {
     pressedKeys.current.add(key);
     const [whiteNote, blackNote] = keyMap[key];
 
-    if (e.shiftKey && blackNote) {
-      addActiveNote(blackNote.noteIndex);
-      console.log("Black Note:", getNoteName(blackNote.noteIndex, transpose));
-    } else if (whiteNote) {
-      addActiveNote(whiteNote.noteIndex);
-      console.log("White Note:", getNoteName(whiteNote.noteIndex, transpose));
-    }
+    const noteToPlay = e.shiftKey && blackNote ? blackNote : whiteNote;
+    if (noteToPlay) addActiveNote(noteToPlay.noteIndex);
   };
 
   const handleKeyUp = (e: KeyboardEvent) => {
@@ -85,7 +79,7 @@ export const KeyTester = () => {
 
   const playNote = (noteIndex: NoteIndex) => {
     const noteName = getNoteName(noteIndex, transpose);
-    synth.triggerAttackRelease(noteName, "4n");
+    synth.current.triggerAttackRelease(noteName, "4n");
     return noteName;
   };
 
@@ -206,13 +200,17 @@ interface TransposeControllerProps {
   setTranspose: Dispatch<SetStateAction<number>>;
 }
 function TransposeController({ transpose, setTranspose }: TransposeControllerProps) {
+  const adjustTranspose = (amount: number) => {
+    setTranspose((prev) => Math.max(-12, Math.min(12, prev + amount)));
+  };
+
   return (
     <div>
-      <button type="button" onClick={() => setTranspose((prev) => Math.min(Math.max(prev - 1, -12), 12))}>
+      <button type="button" onClick={() => adjustTranspose(-1)}>
         -
       </button>
-      <span>Transposition:{transpose}</span>
-      <button type="button" onClick={() => setTranspose((prev) => Math.min(Math.max(prev + 1, -12), 12))}>
+      <span>Transposition: {transpose}</span>
+      <button type="button" onClick={() => adjustTranspose(1)}>
         +
       </button>
     </div>
