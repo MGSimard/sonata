@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Tone from "tone";
 import { noteMap, keyMap } from "@/_utils/maps";
 
@@ -27,10 +27,9 @@ import { noteMap, keyMap } from "@/_utils/maps";
  */
 
 export const KeyTester = () => {
+  const [transpose, setTranspose] = useState(0);
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
   const now = Tone.now();
-
-  const transpose = 1; // -12 to +12
 
   useEffect(() => {
     const controller = new AbortController();
@@ -64,18 +63,31 @@ export const KeyTester = () => {
     window.addEventListener("keyup", handleKeyUp, { signal });
 
     return () => controller.abort();
-  }, []);
+  }, [transpose]);
 
   const handleStart = async () => {
     await Tone.start();
     console.log("Tone.started");
   };
 
+  const handleTranspose = (delta: number) => {
+    // max -12 to +12
+    const newTranspose = Math.min(Math.max(transpose + delta, -12), 12);
+    setTranspose(newTranspose);
+  };
+
   return (
     <div>
       KeyTester
       <button type="button" onClick={handleStart}>
-        Start
+        Start Tone.js
+      </button>
+      <button type="button" onClick={() => handleTranspose(-1)}>
+        -
+      </button>
+      <span>Transposition:{transpose}</span>
+      <button type="button" onClick={() => handleTranspose(1)}>
+        +
       </button>
     </div>
   );
