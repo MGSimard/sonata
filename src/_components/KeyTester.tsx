@@ -36,26 +36,27 @@ export const KeyTester = () => {
     const pressedKeys = new Set<string>();
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const key = ""; // Conditional assignment
-      // 1. If e.key is A-Za-z, assign e.key
-      // 2. If e.key is not A-Za-z, assign e.code
+      const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
+      if (!keyMap[key as keyof typeof keyMap] || pressedKeys.has(key)) return;
 
-      if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
-      console.log("Code:", e.code);
-      pressedKeys.add(e.code);
-      const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
+      console.log("Valid Key:", key);
 
-      if (e.shiftKey && sharpNote) {
-        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
-      } else if (flatNote) {
-        console.log("Flat Note:", noteMap[flatNote + transpose]);
-      }
+      // console.log("Code:", e.code);
+      // pressedKeys.add(e.code);
+      // const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
+
+      // if (e.shiftKey && sharpNote) {
+      //   console.log("Sharp Note:", noteMap[sharpNote + transpose]);
+      // } else if (flatNote) {
+      //   console.log("Flat Note:", noteMap[flatNote + transpose]);
+      // }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (!keyMap[e.code as keyof typeof keyMap]) return;
-      console.log("Released:", e.code);
-      pressedKeys.delete(e.code);
+      const key = e.code.startsWith("Digit") ? e.code : e.key;
+      if (!keyMap[key as keyof typeof keyMap]) return;
+      console.log("Released:", key);
+      pressedKeys.delete(key);
     };
 
     window.addEventListener("keydown", handleKeyDown, { signal });
