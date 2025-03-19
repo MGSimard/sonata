@@ -75,40 +75,137 @@ export const noteMap = [
 ];
 
 export const keyMap = {
-  Digit1: [12, 13], // C2, C#2
-  Digit2: [14, 15], // D2, D#2
-  Digit3: [16, null], // E2
-  Digit4: [17, 18], // F2, F#2
-  Digit5: [19, 20], // G2, G#2
-  Digit6: [21, 22], // A2, A#2
-  Digit7: [23, null], // B2
-  Digit8: [24, 25], // C3, C#3
-  Digit9: [26, 27], // D3, D#3
-  Digit0: [28, null], // E3
-  q: [29, 30], // F3, F#3
-  w: [31, 32], // G3, G#3
-  e: [33, 34], // A3, A#3
-  r: [35, null], // B3
-  t: [36, 37], // C4, C#4
-  y: [38, 39], // D4, D#4
-  u: [40, null], // E4
-  i: [41, 42], // F4, F#4
-  o: [43, 44], // G4, G#4
-  p: [45, 46], // A4, A#4
-  a: [47, null], // B4
-  s: [48, 49], // C5, C#5
-  d: [50, 51], // D5, D#5
-  f: [52, null], // E5
-  g: [53, 54], // F5, F#5
-  h: [55, 56], // G5, G#5
-  j: [57, 58], // A5, A#5
-  k: [59, null], // B5
-  l: [60, 61], // C6, C#6
-  z: [62, 63], // D6, D#6
-  x: [64, null], // E6
-  c: [65, 66], // F6, F#6
-  v: [67, 68], // G6, G#6
-  b: [69, 70], // A6, A#6
-  n: [71, null], // B6
-  m: [72, null], // C7
+  Digit1: [
+    { char: "1", note: 12 }, // C2
+    { char: "!", note: 13 }, // C#2
+  ],
+  Digit2: [
+    { char: "2", note: 14 }, // D2
+    { char: "@", note: 15 }, // D#2
+  ],
+  Digit3: [
+    { char: "3", note: 16 }, // E2
+  ],
+  Digit4: [
+    { char: "4", note: 17 }, // F2
+    { char: "$", note: 18 }, // F#2
+  ],
+  Digit5: [
+    { char: "5", note: 19 }, // G2
+    { char: "%", note: 20 }, // G#2
+  ],
+  Digit6: [
+    { char: "6", note: 21 }, // A2
+    { char: "^", note: 22 }, // A#2
+  ],
+  Digit7: [
+    { char: "7", note: 23 }, // B2
+  ],
+  Digit8: [
+    { char: "8", note: 24 }, // C3
+    { char: "*", note: 25 }, // C#3
+  ],
+  Digit9: [
+    { char: "9", note: 26 }, // D3
+    { char: "(", note: 27 }, // D#3
+  ],
+  Digit0: [
+    { char: "0", note: 28 }, // E3
+  ],
+  q: [
+    { char: "q", note: 29 }, // F3
+    { char: "Q", note: 30 }, // F#3
+  ],
+  w: [
+    { char: "w", note: 31 }, // G3
+    { char: "W", note: 32 }, // G#3
+  ],
+  e: [
+    { char: "e", note: 33 }, // A3
+    { char: "E", note: 34 }, // A#3
+  ],
+  r: [
+    { char: "r", note: 35 }, // B3
+  ],
+  t: [
+    { char: "t", note: 36 }, // C4
+    { char: "T", note: 37 }, // C#4
+  ],
+  y: [
+    { char: "y", note: 38 }, // D4
+    { char: "Y", note: 39 }, // D#4
+  ],
+  u: [
+    { char: "u", note: 40 }, // E4
+  ],
+  i: [
+    { char: "i", note: 41 }, // F4
+    { char: "I", note: 42 }, // F#4
+  ],
+  o: [
+    { char: "o", note: 43 }, // G4
+    { char: "O", note: 44 }, // G#4
+  ],
+  p: [
+    { char: "p", note: 45 }, // A4
+    { char: "P", note: 46 }, // A#4
+  ],
+  a: [
+    { char: "a", note: 47 }, // B4
+  ],
+  s: [
+    { char: "s", note: 48 }, // C5
+    { char: "S", note: 49 }, // C#5
+  ],
+  d: [
+    { char: "d", note: 50 }, // D5
+    { char: "D", note: 51 }, // D#5
+  ],
+  f: [
+    { char: "f", note: 52 }, // E5
+  ],
+  g: [
+    { char: "g", note: 53 }, // F5
+    { char: "G", note: 54 }, // F#5
+  ],
+  h: [
+    { char: "h", note: 55 }, // G5
+    { char: "H", note: 56 }, // G#5
+  ],
+  j: [
+    { char: "j", note: 57 }, // A5
+    { char: "J", note: 58 }, // A#5
+  ],
+  k: [
+    { char: "k", note: 59 }, // B5
+  ],
+  l: [
+    { char: "l", note: 60 }, // C6
+    { char: "L", note: 61 }, // C#6
+  ],
+  z: [
+    { char: "z", note: 62 }, // D6
+    { char: "Z", note: 63 }, // D#6
+  ],
+  x: [
+    { char: "x", note: 64 }, // E6
+  ],
+  c: [
+    { char: "c", note: 65 }, // F6
+    { char: "C", note: 66 }, // F#6
+  ],
+  v: [
+    { char: "v", note: 67 }, // G6
+    { char: "V", note: 68 }, // G#6
+  ],
+  b: [
+    { char: "b", note: 69 }, // A6
+    { char: "B", note: 70 }, // A#6
+  ],
+  n: [
+    { char: "n", note: 71 }, // B6
+  ],
+  m: [
+    { char: "m", note: 72 }, // C7
+  ],
 };

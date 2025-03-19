@@ -50,16 +50,16 @@ export const KeyTester = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
       if (!keyMap[key as keyof typeof keyMap] || pressedKeys.has(key)) return;
-
       pressedKeys.add(key);
       const [flatNote, sharpNote] = keyMap[key as keyof typeof keyMap];
+      console.log(flatNote, sharpNote);
 
       if (e.shiftKey && sharpNote) {
-        synth.triggerAttackRelease(noteMap[sharpNote + transpose]!, "8n");
-        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
+        synth.triggerAttackRelease(noteMap[sharpNote.note + transpose]!, "8n");
+        console.log("Sharp Note:", noteMap[sharpNote.note + transpose]);
       } else if (flatNote) {
-        synth.triggerAttackRelease(noteMap[flatNote + transpose]!, "8n");
-        console.log("Flat Note:", noteMap[flatNote + transpose]);
+        synth.triggerAttackRelease(noteMap[flatNote.note + transpose]!, "8n");
+        console.log("Flat Note:", noteMap[flatNote.note + transpose]);
       }
     };
 
