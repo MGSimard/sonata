@@ -118,6 +118,7 @@ type KeyMap = Record<
  * - The only play would be making users conform to preset layouts, but it's a downside for UX.
  * - So users who aren't in QWERTY will have to deal with keyboard notes not being consecutive.
  * */
+// NOTE: "char" field is just for UI label on keys, it's not used for mapping
 export const keyMap: KeyMap = {
   Digit1: [
     { char: "1", noteIndex: 12 }, // C2
