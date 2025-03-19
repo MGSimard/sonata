@@ -21,6 +21,8 @@ import { noteMap, keyMap } from "@/_utils/maps";
  * - In short, use a hybrid method:
  *   - If e.key is not A-Za-z, refer to e.code + e.shiftKey
  *   - If e.key is A-Za-z, refer to e.key
+ *   - Code could be shorter if we do an assignment then just thing.toLowerCase() + e.shiftKey
+ *   - Rather than running either e.code + e.shiftKey or e.key (intrinsic lowercase/uppercase)
  * - This gives the greatest compatibility regarding both physical and digitally mapped keys
  */
 
@@ -34,6 +36,10 @@ export const KeyTester = () => {
     const pressedKeys = new Set<string>();
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      const key = ""; // Conditional assignment
+      // 1. If e.key is A-Za-z, assign e.key
+      // 2. If e.key is not A-Za-z, assign e.code
+
       if (!keyMap[e.code as keyof typeof keyMap] || pressedKeys.has(e.code)) return;
       console.log("Code:", e.code);
       pressedKeys.add(e.code);
