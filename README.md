@@ -22,7 +22,7 @@
 
 ## Task List
 
-- [ ] Make decision on tone.js usage vs raw Web Audio API
+- [x] Make decision on tone.js usage vs raw Web Audio API
 - [ ] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
 - [ ] ...
 - [ ] Establish application identity
