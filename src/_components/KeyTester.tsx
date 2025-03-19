@@ -26,6 +26,16 @@ import { noteMap, keyMap } from "@/_utils/maps";
  * - This gives the greatest compatibility regarding both physical and digitally mapped keys
  */
 
+/* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
+ * "Multiple samples can also be combined into an instrument.
+ * If you have audio files organized by note, Tone.Sampler will
+ * pitch shift the samples to fill in gaps between notes.
+ * So for example, if you only have every 3rd note on a piano sampled,
+ * you could turn that into a full piano sample. Unlike the other synths,
+ * Tone.Sampler is polyphonic so doesn’t need to be passed into Tone.PolySynth"
+ * https://tonejs.github.io/#tonesampler
+ */
+
 export const KeyTester = () => {
   const [transpose, setTranspose] = useState(0);
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
