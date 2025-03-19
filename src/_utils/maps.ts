@@ -83,15 +83,6 @@ export function getNoteName(noteIndex: NoteIndex, transpose = 0): string | undef
   return noteIndexToNote[noteIndex + transpose];
 }
 
-// Combined type definition for keyboard mapping
-type KeyMap = Record<
-  string,
-  Array<{
-    char: string;
-    noteIndex: NoteIndex;
-  }>
->;
-
 /* WHY A HYBRID e.code + e.key METHOD
  * - e.code maps to physical key position.
  * - e.key maps to digital key output.
@@ -119,7 +110,8 @@ type KeyMap = Record<
  * - So users who aren't in QWERTY will have to deal with keyboard notes not being consecutive.
  * */
 // NOTE: "char" field is just for UI label on keys, it's not used for mapping
-export const keyMap: KeyMap = {
+
+export const keyMap: Record<string, Array<{ char: string; noteIndex: NoteIndex }>> = {
   Digit1: [
     { char: "1", noteIndex: 12 }, // C2
     { char: "!", noteIndex: 13 }, // C#2
