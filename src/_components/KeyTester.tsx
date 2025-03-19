@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState, useRef, type Dispatch, type SetStateAction } from "react";
 import * as Tone from "tone";
-import { getNoteName, keyMap, type NoteTypes } from "@/_utils/maps";
+import { getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
+import reportWebVitals from "@/reportWebVitals";
 
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
@@ -15,7 +16,28 @@ import { getNoteName, keyMap, type NoteTypes } from "@/_utils/maps";
 export const KeyTester = () => {
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
+  const pointerPressedNotes = useRef<Set<number>>(new Set());
+  const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
+  const isPointerDown = useRef<boolean>(false);
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+
+  // Helper functions for note management
+  const addActiveNote = (noteIndex: NoteIndex) => {
+    playNote(noteIndex);
+    setActiveNotes((prev) => {
+      const updated = new Set(prev);
+      updated.add(noteIndex);
+      return updated;
+    });
+  };
+
+  const removeActiveNote = (noteIndex: NoteIndex) => {
+    setActiveNotes((prev) => {
+      const updated = new Set(prev);
+      updated.delete(noteIndex);
+      return updated;
+    });
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -23,6 +45,7 @@ export const KeyTester = () => {
 
     window.addEventListener("keydown", handleKeyDown, { signal });
     window.addEventListener("keyup", handleKeyUp, { signal });
+    window.addEventListener("pointerup", () => (isPointerDown.current = false), { signal });
 
     return () => controller.abort();
   }, [transpose]);
@@ -30,14 +53,15 @@ export const KeyTester = () => {
   const handleKeyDown = (e: KeyboardEvent) => {
     const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
     if (!keyMap[key] || pressedKeys.current.has(key)) return;
+
     pressedKeys.current.add(key);
     const [whiteNote, blackNote] = keyMap[key];
 
     if (e.shiftKey && blackNote) {
-      synth.triggerAttackRelease(getNoteName(blackNote.noteIndex, transpose)!, "4n");
+      addActiveNote(blackNote.noteIndex);
       console.log("Black Note:", getNoteName(blackNote.noteIndex, transpose));
     } else if (whiteNote) {
-      synth.triggerAttackRelease(getNoteName(whiteNote.noteIndex, transpose)!, "4n");
+      addActiveNote(whiteNote.noteIndex);
       console.log("White Note:", getNoteName(whiteNote.noteIndex, transpose));
     }
   };
@@ -45,12 +69,51 @@ export const KeyTester = () => {
   const handleKeyUp = (e: KeyboardEvent) => {
     const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
     if (!keyMap[key]) return;
+
     pressedKeys.current.delete(key);
+    const [whiteNote, blackNote] = keyMap[key];
+
+    // Remove both possible notes for this key
+    if (whiteNote) removeActiveNote(whiteNote.noteIndex);
+    if (blackNote) removeActiveNote(blackNote.noteIndex);
   };
 
   const handleStart = async () => {
     await Tone.start();
     console.log("Tone.started");
+  };
+
+  const playNote = (noteIndex: NoteIndex) => {
+    const noteName = getNoteName(noteIndex, transpose);
+    synth.triggerAttackRelease(noteName, "4n");
+    return noteName;
+  };
+
+  // Unified pointer event handlers
+  const handlePointerDown = (noteIndex: NoteIndex) => {
+    isPointerDown.current = true;
+    pointerPressedNotes.current.add(noteIndex);
+    addActiveNote(noteIndex);
+  };
+
+  const handlePointerUp = (noteIndex: NoteIndex) => {
+    isPointerDown.current = false;
+    pointerPressedNotes.current.delete(noteIndex);
+    removeActiveNote(noteIndex);
+  };
+
+  const handlePointerEnter = (noteIndex: NoteIndex) => {
+    if (isPointerDown.current) {
+      pointerPressedNotes.current.add(noteIndex);
+      addActiveNote(noteIndex);
+    }
+  };
+
+  const handlePointerLeave = (noteIndex: NoteIndex) => {
+    if (pointerPressedNotes.current.has(noteIndex)) {
+      pointerPressedNotes.current.delete(noteIndex);
+      removeActiveNote(noteIndex);
+    }
   };
 
   return (
@@ -62,10 +125,35 @@ export const KeyTester = () => {
       <TransposeController transpose={transpose} setTranspose={setTranspose} />
       <div id="piano-keys">
         {Object.entries(keyMap).map(([key, notes], keyIndex) => {
+          const whiteNote = notes[0];
+          const blackNote = notes[1];
+
           return (
             <Fragment key={key}>
-              {notes[0] && <PianoKey note={notes[0]} isWhite={true} index={keyIndex} />}
-              {notes[1] && <PianoKey note={notes[1]} isWhite={false} index={keyIndex} />}
+              {whiteNote && (
+                <PianoKey
+                  note={whiteNote}
+                  isWhite={true}
+                  index={keyIndex}
+                  isPlaying={activeNotes.has(whiteNote.noteIndex)}
+                  onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
+                  onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
+                  onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
+                  onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
+                />
+              )}
+              {blackNote && (
+                <PianoKey
+                  note={blackNote}
+                  isWhite={false}
+                  index={keyIndex}
+                  isPlaying={activeNotes.has(blackNote.noteIndex)}
+                  onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
+                  onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
+                  onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
+                  onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
+                />
+              )}
             </Fragment>
           );
         })}
@@ -74,14 +162,36 @@ export const KeyTester = () => {
   );
 };
 
-function PianoKey({ note, isWhite, index }: { note: NoteTypes; isWhite: boolean; index: number }) {
+function PianoKey({
+  note,
+  isWhite,
+  index,
+  isPlaying,
+  onPointerDown,
+  onPointerUp,
+  onPointerEnter,
+  onPointerLeave,
+}: {
+  note: NoteTypes;
+  isWhite: boolean;
+  index: number;
+  isPlaying: boolean;
+  onPointerDown: () => void;
+  onPointerUp: () => void;
+  onPointerEnter: () => void;
+  onPointerLeave: () => void;
+}) {
   return (
     <button
       type="button"
-      className={`key ${isWhite ? "key-white" : "key-black"}`}
+      className={`key ${isWhite ? "key-white" : "key-black"} ${isPlaying ? "playing" : ""}`}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       style={
         isWhite
-          ? {}
+          ? undefined
           : {
               left: `calc(var(--keyWidth) * ${index} + var(--keyWidth) * 0.7)`,
             }

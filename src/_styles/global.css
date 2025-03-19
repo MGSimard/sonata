@@ -58,6 +58,17 @@ button:not(:disabled) {
   display: flex;
   overflow-x: scroll;
   border: 1px solid red;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  outline: none;
 }
 #piano-keys > button {
   flex-shrink: 0;

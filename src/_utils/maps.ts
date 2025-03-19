@@ -1,5 +1,5 @@
 // Define MIDI note numbers for each note
-type NoteIndex = number;
+export type NoteIndex = number;
 
 // Map from MIDI note number to note name
 const noteIndexToNote: Record<NoteIndex, string> = {
@@ -76,11 +76,23 @@ const noteIndexToNote: Record<NoteIndex, string> = {
   70: "A#6",
   71: "B6",
   72: "C7",
+  73: "C#7",
+  74: "D7",
+  75: "D#7",
+  76: "E7",
+  77: "F7",
+  78: "F#7",
+  79: "G7",
+  80: "G#7",
+  81: "A7",
+  82: "A#7",
+  83: "B7",
+  84: "C8",
 };
 
-// Get a note name from a MIDI note number with optional transposition
-export function getNoteName(noteIndex: NoteIndex, transpose = 0): string | undefined {
-  return noteIndexToNote[noteIndex + transpose];
+export function getNoteName(noteIndex: NoteIndex, transpose = 0): string {
+  const boundIndex = Math.max(0, Math.min(84, noteIndex + transpose));
+  return noteIndexToNote[boundIndex] ?? "C2"; // Nullish should never happen but w/e
 }
 
 /* WHY A HYBRID e.code + e.key METHOD
@@ -110,12 +122,10 @@ export function getNoteName(noteIndex: NoteIndex, transpose = 0): string | undef
  * - So users who aren't in QWERTY will have to deal with keyboard notes not being consecutive.
  * */
 // NOTE: "char" field is just for UI label on keys, it's not used for mapping
-
 export interface NoteTypes {
   char: string;
   noteIndex: NoteIndex;
 }
-
 export const keyMap: Record<string, Array<NoteTypes>> = {
   Digit1: [
     { char: "1", noteIndex: 12 }, // C2
