@@ -74,7 +74,7 @@ button:not(:disabled) {
   position: absolute;
   top: 0;
   width: calc(var(--keyWidth) * 0.6);
-  height: calc(var(--keyWidth) * 3.6);
+  height: calc(var(--keyWidth) * 4);
   color: white;
   background-color: black;
   z-index: 1;

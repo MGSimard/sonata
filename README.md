@@ -33,6 +33,7 @@
 - [ ] Note history
 - [ ] Volume control
 - [ ] Note transposition setting (-12, +12)
+- [ ] Slight black key offsets (towards edges, center black key center)
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
