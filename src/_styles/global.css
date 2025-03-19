@@ -68,18 +68,17 @@ button:not(:disabled) {
   width: var(--keyWidth);
   height: calc(var(--keyWidth) * 6);
   background-color: white;
-  z-index: 1;
+  border: 1px solid black;
 }
 .key-black {
   position: absolute;
   top: 0;
-  width: calc(var(--keyWidth) * 0.65);
+  width: calc(var(--keyWidth) * 0.6);
   height: calc(var(--keyWidth) * 3.6);
   color: white;
   background-color: black;
-  z-index: 2;
+  z-index: 1;
 }
 .playing {
   background: var(--clrPrimary);
-  transition: none;
 }

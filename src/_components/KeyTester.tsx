@@ -61,11 +61,11 @@ export const KeyTester = () => {
       </button>
       <TransposeController transpose={transpose} setTranspose={setTranspose} />
       <div id="piano-keys">
-        {Object.entries(keyMap).map(([_, notes]) => {
+        {Object.entries(keyMap).map(([key, notes], keyIndex) => {
           return (
-            <Fragment>
-              {notes[0] && <PianoKey note={notes[0]} isWhite={true} />}
-              {notes[1] && <PianoKey note={notes[1]} isWhite={false} />}
+            <Fragment key={key}>
+              {notes[0] && <PianoKey note={notes[0]} isWhite={true} index={keyIndex} />}
+              {notes[1] && <PianoKey note={notes[1]} isWhite={false} index={keyIndex} />}
             </Fragment>
           );
         })}
@@ -74,10 +74,18 @@ export const KeyTester = () => {
   );
 };
 
-function PianoKey({ note, isWhite }: { note: NoteTypes; isWhite: boolean }) {
-  console.log(note);
+function PianoKey({ note, isWhite, index }: { note: NoteTypes; isWhite: boolean; index: number }) {
   return (
-    <button type="button" className={`key ${isWhite ? "key-white" : "key-black"}`}>
+    <button
+      type="button"
+      className={`key ${isWhite ? "key-white" : "key-black"}`}
+      style={
+        isWhite
+          ? {}
+          : {
+              left: `calc(var(--keyWidth) * ${index} + var(--keyWidth) * 0.7)`,
+            }
+      }>
       {note.char}
     </button>
   );
