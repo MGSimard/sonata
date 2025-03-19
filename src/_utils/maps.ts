@@ -111,7 +111,12 @@ export function getNoteName(noteIndex: NoteIndex, transpose = 0): string | undef
  * */
 // NOTE: "char" field is just for UI label on keys, it's not used for mapping
 
-export const keyMap: Record<string, Array<{ char: string; noteIndex: NoteIndex }>> = {
+export interface NoteTypes {
+  char: string;
+  noteIndex: NoteIndex;
+}
+
+export const keyMap: Record<string, Array<NoteTypes>> = {
   Digit1: [
     { char: "1", noteIndex: 12 }, // C2
     { char: "!", noteIndex: 13 }, // C#2

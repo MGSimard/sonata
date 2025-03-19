@@ -10,12 +10,13 @@
   --clrBg: #ffffff;
   --clrBgLight: #eeeeee;
   --clrBorder: #3b3b3b;
+
+  --keyWidth: 3rem;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid red;
 }
 html {
   font-family: var(--coreFont);
@@ -45,19 +46,40 @@ main {
 /* DEFAULTS */
 button {
   display: block;
+  border: none;
+}
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 /* PIANO */
 #piano-keys {
+  position: relative;
   display: flex;
   overflow-x: scroll;
+  border: 1px solid red;
 }
 #piano-keys > button {
   flex-shrink: 0;
 }
-.key-flat {
-  width: 3rem;
+.key {
+}
+.key-white {
+  width: var(--keyWidth);
+  height: calc(var(--keyWidth) * 6);
+  background-color: white;
+  z-index: 1;
+}
+.key-black {
+  position: absolute;
+  top: 0;
+  width: calc(var(--keyWidth) * 0.65);
+  height: calc(var(--keyWidth) * 3.6);
+  color: white;
+  background-color: black;
+  z-index: 2;
 }
 .playing {
-  background: red;
+  background: var(--clrPrimary);
+  transition: none;
 }
