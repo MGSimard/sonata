@@ -102,3 +102,11 @@ export const KeyTester = () => {
     </div>
   );
 };
+
+function PianoKeys() {
+  return <></>;
+}
+
+function PianoKey() {
+  return <button type="button">key</button>;
+}

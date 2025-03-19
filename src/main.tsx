@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import reportWebVitals from "./reportWebVitals";
+import "@/_styles/global.css";
 
 // Create a new router instance
 const router = createRouter({
