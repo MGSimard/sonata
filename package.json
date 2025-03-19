@@ -34,7 +34,8 @@
     "@tanstack/react-router-devtools": "^1.114.23",
     "@tanstack/router-plugin": "^1.114.23",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tone": "^15.0.4"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
