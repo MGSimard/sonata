@@ -27,7 +27,10 @@ import { noteMap, keyMap } from "@/_utils/maps";
  */
 
 export const KeyTester = () => {
-  const transpose = 0; // -12 to +12
+  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  const now = Tone.now();
+
+  const transpose = 1; // -12 to +12
 
   useEffect(() => {
     const controller = new AbortController();
@@ -39,23 +42,21 @@ export const KeyTester = () => {
       const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
       if (!keyMap[key as keyof typeof keyMap] || pressedKeys.has(key)) return;
 
-      console.log("Valid Key:", key);
+      pressedKeys.add(key);
+      const [flatNote, sharpNote] = keyMap[key as keyof typeof keyMap];
 
-      // console.log("Code:", e.code);
-      // pressedKeys.add(e.code);
-      // const [flatNote, sharpNote] = keyMap[e.code as keyof typeof keyMap];
-
-      // if (e.shiftKey && sharpNote) {
-      //   console.log("Sharp Note:", noteMap[sharpNote + transpose]);
-      // } else if (flatNote) {
-      //   console.log("Flat Note:", noteMap[flatNote + transpose]);
-      // }
+      if (e.shiftKey && sharpNote) {
+        synth.triggerAttackRelease(noteMap[sharpNote + transpose]!, "8n");
+        console.log("Sharp Note:", noteMap[sharpNote + transpose]);
+      } else if (flatNote) {
+        synth.triggerAttackRelease(noteMap[flatNote + transpose]!, "8n");
+        console.log("Flat Note:", noteMap[flatNote + transpose]);
+      }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
       if (!keyMap[key as keyof typeof keyMap]) return;
-      console.log("Released:", key);
       pressedKeys.delete(key);
     };
 
@@ -65,5 +66,17 @@ export const KeyTester = () => {
     return () => controller.abort();
   }, []);
 
-  return <div>KeyTester</div>;
+  const handleStart = async () => {
+    await Tone.start();
+    console.log("Tone.started");
+  };
+
+  return (
+    <div>
+      KeyTester
+      <button type="button" onClick={handleStart}>
+        Start
+      </button>
+    </div>
+  );
 };
