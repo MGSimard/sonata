@@ -53,7 +53,7 @@ export const KeyTester = () => {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      const key = e.code.startsWith("Digit") ? e.code : e.key;
+      const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
       if (!keyMap[key as keyof typeof keyMap]) return;
       console.log("Released:", key);
       pressedKeys.delete(key);
