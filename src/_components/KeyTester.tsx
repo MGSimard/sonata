@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import * as Tone from "tone";
 import { noteMap, keyMap } from "@/_utils/maps";
 
@@ -32,7 +32,7 @@ import { noteMap, keyMap } from "@/_utils/maps";
  * pitch shift the samples to fill in gaps between notes.
  * So for example, if you only have every 3rd note on a piano sampled,
  * you could turn that into a full piano sample. Unlike the other synths,
- * Tone.Sampler is polyphonic so doesn’t need to be passed into Tone.PolySynth"
+ * Tone.Sampler is polyphonic so doesn't need to be passed into Tone.PolySynth"
  * https://tonejs.github.io/#tonesampler
  */
 
@@ -40,40 +40,40 @@ export const KeyTester = () => {
   const [transpose, setTranspose] = useState(0);
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
   const now = Tone.now();
+  const keys = Object.keys(keyMap);
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
-    const pressedKeys = new Set<string>();
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
-      if (!keyMap[key as keyof typeof keyMap] || pressedKeys.has(key)) return;
-      pressedKeys.add(key);
-      const [flatNote, sharpNote] = keyMap[key as keyof typeof keyMap];
-      console.log(flatNote, sharpNote);
-
-      if (e.shiftKey && sharpNote) {
-        synth.triggerAttackRelease(noteMap[sharpNote.note + transpose]!, "8n");
-        console.log("Sharp Note:", noteMap[sharpNote.note + transpose]);
-      } else if (flatNote) {
-        synth.triggerAttackRelease(noteMap[flatNote.note + transpose]!, "8n");
-        console.log("Flat Note:", noteMap[flatNote.note + transpose]);
-      }
-    };
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
-      if (!keyMap[key as keyof typeof keyMap]) return;
-      pressedKeys.delete(key);
-    };
 
     window.addEventListener("keydown", handleKeyDown, { signal });
     window.addEventListener("keyup", handleKeyUp, { signal });
 
     return () => controller.abort();
   }, [transpose]);
+
+  const pressedKeys = new Set<string>();
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
+    if (!keyMap[key as keyof typeof keyMap] || pressedKeys.has(key)) return;
+    pressedKeys.add(key);
+    const [flatNote, sharpNote] = keyMap[key as keyof typeof keyMap];
+
+    if (e.shiftKey && sharpNote) {
+      synth.triggerAttackRelease(noteMap[sharpNote.note + transpose]!, "8n");
+      console.log("Sharp Note:", noteMap[sharpNote.note + transpose]);
+    } else if (flatNote) {
+      synth.triggerAttackRelease(noteMap[flatNote.note + transpose]!, "8n");
+      console.log("Flat Note:", noteMap[flatNote.note + transpose]);
+    }
+  };
+
+  const handleKeyUp = (e: KeyboardEvent) => {
+    const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
+    if (!keyMap[key as keyof typeof keyMap]) return;
+    pressedKeys.delete(key);
+  };
 
   const handleStart = async () => {
     await Tone.start();
@@ -99,14 +99,7 @@ export const KeyTester = () => {
       <button type="button" onClick={() => handleTranspose(1)}>
         +
       </button>
+      <div id="piano-keys"></div>
     </div>
   );
 };
-
-function PianoKeys() {
-  return <></>;
-}
-
-function PianoKey() {
-  return <button type="button">key</button>;
-}

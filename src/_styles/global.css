@@ -42,3 +42,22 @@ body {
 main {
   flex-grow: 1;
 }
+/* DEFAULTS */
+button {
+  display: block;
+}
+
+/* PIANO */
+#piano-keys {
+  display: flex;
+  overflow-x: scroll;
+}
+#piano-keys > button {
+  flex-shrink: 0;
+}
+.key-flat {
+  width: 3rem;
+}
+.playing {
+  background: red;
+}
