@@ -2,30 +2,6 @@ import { Fragment, useEffect, useState } from "react";
 import * as Tone from "tone";
 import { noteMap, keyMap } from "@/_utils/maps";
 
-/* NOTES
- * e.keyCode is deprecated
- * e.charCode is deprecated
- * e.code maps to physical key
- * e.key maps to mapped key (final output)
- */
-
-/* PROBLEM
- * - User's layout might not match their keyboard's physical layout (remapped keys, diff layouts)
- * - Language layouts add an additional layer of complexity for SYMBOLS on number keys (6 -> ^ or ?)
- */
-
-/* SOLUTION?
- * - Since regardless of layout, numbers should be in the same spots, we can use e.code safely
- * - Since letters might not match the keyboard's physical layout, we can use e.key for the actual character
- * - This is safe because lowercase and uppercase versions of letter keys are always consistent
- * - In short, use a hybrid method:
- *   - If e.key is not A-Za-z, refer to e.code + e.shiftKey
- *   - If e.key is A-Za-z, refer to e.key
- *   - Code could be shorter if we do an assignment then just thing.toLowerCase() + e.shiftKey
- *   - Rather than running either e.code + e.shiftKey or e.key (intrinsic lowercase/uppercase)
- * - This gives the greatest compatibility regarding both physical and digitally mapped keys
- */
-
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
  * If you have audio files organized by note, Tone.Sampler will
