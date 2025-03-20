@@ -11,11 +11,13 @@
   --clrBgLight: #eeeeee;
   --clrBorder: #3b3b3b;
 
-  --keyWidth: 3.5rem;
+  --keyWhiteWidth: 3.5rem;
   --keyWhite: oklch(96.9% 0.0053 106.5);
   --keyWhiteShadow: oklch(from var(--keyWhite) calc(l - 0.05) c h);
   --keyWhiteBorder: oklch(from var(--keyWhite) calc(l - 0.7) calc(c + 0.01) calc(h + 1));
 
+  --keyBlackWidth: calc(var(--keyWhiteWidth) * 0.6);
+  --keyBlackHeight: calc(var(--keyWhiteWidth) * 4);
   --keyBlack: oklch(7.06% 0.0145 82.32);
   --keyBlackShine: oklch(25.65% 0.004 84.58);
 }
@@ -77,7 +79,7 @@ button:not(:disabled) {
   -webkit-user-drag: none;
   user-drag: none;
   outline: none;
-  background-color: oklch(25.65% 0.004 84.58);
+  background-color: var(--keyBlackShine);
 }
 #piano-keys > button {
   flex-shrink: 0;
@@ -86,37 +88,88 @@ button:not(:disabled) {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  overflow: hidden;
 }
 .key-core {
   flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.5rem 0;
 }
 .key-white {
-  width: var(--keyWidth);
-  height: calc(var(--keyWidth) * 6);
+  width: var(--keyWhiteWidth);
+  height: calc(var(--keyWhiteWidth) * 6);
   color: black;
   background-color: var(--keyWhiteShadow);
-  border-top: calc(var(--keyWidth) * 0.1) solid var(--clrPrimary);
+  border-top: calc(var(--keyWhiteWidth) * 0.1) solid var(--clrPrimary);
   border-right: 1px solid var(--keyWhiteBorder);
   border-left: 1px solid var(--keyWhiteBorder);
-  /* clip-path: polygon(
-    0 0,
-    calc(100% - (calc(var(--keyWidth) * 0.6) / 2)) 0,
-    calc(100% - (calc(var(--keyWidth) * 0.6) / 2)) calc(var(--keyWidth) * 4),
-    100% calc(var(--keyWidth) * 4),
-    100% 100%,
-    0 100%
-  ); */
   transition: clip-path 0.05s ease-in;
 }
-.key-white.playing {
-  /* clip-path: polygon(
+.right-L {
+  clip-path: polygon(
     0 0,
-    calc(100% - (calc(var(--keyWidth) * 0.6) / 2)) 0,
-    calc(100% - (calc(var(--keyWidth) * 0.6) / 2)) calc(calc(var(--keyWidth) * 4) + 8%),
-    100% calc(calc(var(--keyWidth) * 4) + 8%),
+    calc(100% - (var(--keyBlackWidth) / 2)) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) var(--keyBlackHeight),
+    100% var(--keyBlackHeight),
     100% 100%,
     0 100%
-  ); */
+  );
+}
+.right-L.playing {
+  clip-path: polygon(
+    0 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 5%),
+    100% calc(var(--keyBlackHeight) + 5%),
+    100% 100%,
+    0 100%
+  );
+}
+.double-L {
+  clip-path: polygon(
+    calc(var(--keyBlackWidth) / 2) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) var(--keyBlackHeight),
+    100% var(--keyBlackHeight),
+    100% 100%,
+    0 100%,
+    0 var(--keyBlackHeight),
+    calc(var(--keyBlackWidth) / 2) var(--keyBlackHeight)
+  );
+}
+.double-L.playing {
+  clip-path: polygon(
+    calc(var(--keyBlackWidth) / 2) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) 0,
+    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 5%),
+    100% calc(var(--keyBlackHeight) + 5%),
+    100% 100%,
+    0 100%,
+    0 calc(var(--keyBlackHeight) + 5%),
+    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 5%)
+  );
+}
+.left-L {
+  clip-path: polygon(
+    calc(var(--keyBlackWidth) / 2) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--keyBlackHeight),
+    calc(var(--keyBlackWidth) / 2) var(--keyBlackHeight)
+  );
+}
+.left-L.playing {
+  clip-path: polygon(
+    calc(var(--keyBlackWidth) / 2) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 calc(var(--keyBlackHeight) + 5%),
+    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 5%)
+  );
 }
 .key-white .key-core {
   border-radius: 0 0 0.4rem 0.4rem;
@@ -135,8 +188,8 @@ button:not(:disabled) {
   gap: 1%;
   position: absolute;
   top: 0;
-  width: calc(var(--keyWidth) * 0.6);
-  height: calc(var(--keyWidth) * 4);
+  width: var(--keyBlackWidth);
+  height: calc(var(--keyWhiteWidth) * 4);
   color: #fff;
   background-color: var(--keyBlack);
   z-index: 1;
@@ -160,7 +213,4 @@ button:not(:disabled) {
 .key-black.playing .key-bottom {
   height: 10%;
   box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.4);
-}
-body {
-  background: black;
 }

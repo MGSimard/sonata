@@ -287,7 +287,7 @@ function PianoKey({
         isWhite
           ? undefined
           : {
-              left: `calc(var(--keyWidth) * ${index} + var(--keyWidth) * 0.7)`,
+              left: `calc(var(--keyWhiteWidth) * ${index} + var(--keyWhiteWidth) * 0.7)`,
             }
       }>
       <div className="key-core">{note.char}</div>

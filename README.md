@@ -39,7 +39,7 @@
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
-- [ ] Narrow down keypress design on white keys (white keys on top, clip-path? for press anim)
+- [ ] Switch white key layout around so you don't get keyspam on leftclick near clip-path on animation
 - [ ] ...
 - [ ] Metadata assets
 - [ ] Finalize index.html metadata
