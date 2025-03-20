@@ -18,7 +18,100 @@ export const KeyTester = () => {
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
   const isPointerDown = useRef<boolean>(false);
-  const synth = useRef<Tone.PolySynth>(new Tone.PolySynth(Tone.Synth).toDestination());
+
+  const sampler = useRef<Tone.Sampler>(
+    new Tone.Sampler({
+      urls: {
+        C1: "/assets/notes/C1.mp3",
+        "C#1": "/assets/notes/C#1.mp3",
+        D1: "/assets/notes/D1.mp3",
+        "D#1": "/assets/notes/D#1.mp3",
+        E1: "/assets/notes/E1.mp3",
+        F1: "/assets/notes/F1.mp3",
+        "F#1": "/assets/notes/F#1.mp3",
+        G1: "/assets/notes/G1.mp3",
+        "G#1": "/assets/notes/G#1.mp3",
+        A1: "/assets/notes/A1.mp3",
+        "A#1": "/assets/notes/A#1.mp3",
+        B1: "/assets/notes/B1.mp3",
+        C2: "/assets/notes/C2.mp3",
+        "C#2": "/assets/notes/C#2.mp3",
+        D2: "/assets/notes/D2.mp3",
+        "D#2": "/assets/notes/D#2.mp3",
+        E2: "/assets/notes/E2.mp3",
+        F2: "/assets/notes/F2.mp3",
+        "F#2": "/assets/notes/F#2.mp3",
+        G2: "/assets/notes/G2.mp3",
+        "G#2": "/assets/notes/G#2.mp3",
+        A2: "/assets/notes/A2.mp3",
+        "A#2": "/assets/notes/A#2.mp3",
+        B2: "/assets/notes/B2.mp3",
+        C3: "/assets/notes/C3.mp3",
+        "C#3": "/assets/notes/C#3.mp3",
+        D3: "/assets/notes/D3.mp3",
+        "D#3": "/assets/notes/D#3.mp3",
+        E3: "/assets/notes/E3.mp3",
+        F3: "/assets/notes/F3.mp3",
+        "F#3": "/assets/notes/F#3.mp3",
+        G3: "/assets/notes/G3.mp3",
+        "G#3": "/assets/notes/G#3.mp3",
+        A3: "/assets/notes/A3.mp3",
+        "A#3": "/assets/notes/A#3.mp3",
+        B3: "/assets/notes/B3.mp3",
+        C4: "/assets/notes/C4.mp3",
+        "C#4": "/assets/notes/C#4.mp3",
+        D4: "/assets/notes/D4.mp3",
+        "D#4": "/assets/notes/D#4.mp3",
+        E4: "/assets/notes/E4.mp3",
+        F4: "/assets/notes/F4.mp3",
+        "F#4": "/assets/notes/F#4.mp3",
+        G4: "/assets/notes/G4.mp3",
+        "G#4": "/assets/notes/G#4.mp3",
+        A4: "/assets/notes/A4.mp3",
+        "A#4": "/assets/notes/A#4.mp3",
+        B4: "/assets/notes/B4.mp3",
+        C5: "/assets/notes/C5.mp3",
+        "C#5": "/assets/notes/C#5.mp3",
+        D5: "/assets/notes/D5.mp3",
+        "D#5": "/assets/notes/D#5.mp3",
+        E5: "/assets/notes/E5.mp3",
+        F5: "/assets/notes/F5.mp3",
+        "F#5": "/assets/notes/F#5.mp3",
+        G5: "/assets/notes/G5.mp3",
+        "G#5": "/assets/notes/G#5.mp3",
+        A5: "/assets/notes/A5.mp3",
+        "A#5": "/assets/notes/A#5.mp3",
+        B5: "/assets/notes/B5.mp3",
+        C6: "/assets/notes/C6.mp3",
+        "C#6": "/assets/notes/C#6.mp3",
+        D6: "/assets/notes/D6.mp3",
+        "D#6": "/assets/notes/D#6.mp3",
+        E6: "/assets/notes/E6.mp3",
+        F6: "/assets/notes/F6.mp3",
+        "F#6": "/assets/notes/F#6.mp3",
+        G6: "/assets/notes/G6.mp3",
+        "G#6": "/assets/notes/G#6.mp3",
+        A6: "/assets/notes/A6.mp3",
+        "A#6": "/assets/notes/A#6.mp3",
+        B6: "/assets/notes/B6.mp3",
+        C7: "/assets/notes/C7.mp3",
+        "C#7": "/assets/notes/C#7.mp3",
+        D7: "/assets/notes/D7.mp3",
+        "D#7": "/assets/notes/D#7.mp3",
+        E7: "/assets/notes/E7.mp3",
+        F7: "/assets/notes/F7.mp3",
+        "F#7": "/assets/notes/F#7.mp3",
+        G7: "/assets/notes/G7.mp3",
+        "G#7": "/assets/notes/G#7.mp3",
+        A7: "/assets/notes/A7.mp3",
+        "A#7": "/assets/notes/A#7.mp3",
+        B7: "/assets/notes/B7.mp3",
+        C8: "/assets/notes/C8.mp3",
+      },
+      release: 1,
+      baseUrl: "http://localhost:3000",
+    }).toDestination()
+  );
 
   // Helper functions for note management
   const addActiveNote = (noteIndex: NoteIndex) => {
@@ -78,8 +171,9 @@ export const KeyTester = () => {
   };
 
   const playNote = (noteIndex: NoteIndex) => {
+    console.log("playNote", noteIndex);
     const noteName = getNoteName(noteIndex, transpose);
-    synth.current.triggerAttackRelease(noteName, "4n");
+    sampler.current.triggerAttackRelease(noteName, 10);
     return noteName;
   };
 
