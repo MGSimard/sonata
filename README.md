@@ -23,7 +23,9 @@
 ## Task List
 
 - [x] Make decision on tone.js usage vs raw Web Audio API
-- [ ] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
+- [x] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
+- [ ] Get a better sample library (currently using exported custom from fl studio)
+- [ ] Find out how to prevent audio overflows causing noise and crackling
 - [ ] ...
 - [ ] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
