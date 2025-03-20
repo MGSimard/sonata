@@ -11,12 +11,19 @@
   --clrBgLight: #eeeeee;
   --clrBorder: #3b3b3b;
 
-  --keyWidth: 3rem;
+  --keyWidth: 3.5rem;
+  --keyWhite: oklch(96.9% 0.0053 106.5);
+  --keyWhiteShadow: oklch(from var(--keyWhite) calc(l - 0.05) c h);
+  --keyWhiteBorder: oklch(from var(--keyWhite) calc(l - 0.7) calc(c + 0.01) calc(h + 1));
+
+  --keyBlack: oklch(7.06% 0.0145 82.32);
+  --keyBlackShine: oklch(25.65% 0.004 84.58);
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid red !important; */
 }
 html {
   font-family: var(--coreFont);
@@ -47,6 +54,7 @@ main {
 button {
   display: block;
   border: none;
+  outline: none;
 }
 button:not(:disabled) {
   cursor: pointer;
@@ -57,7 +65,7 @@ button:not(:disabled) {
   position: relative;
   display: flex;
   overflow-x: scroll;
-  border: 1px solid red;
+  border: 1px solid black;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -74,22 +82,51 @@ button:not(:disabled) {
   flex-shrink: 0;
 }
 .key {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.key-core {
+  flex-grow: 1;
 }
 .key-white {
   width: var(--keyWidth);
   height: calc(var(--keyWidth) * 6);
-  background-color: white;
-  border: 1px solid black;
+  color: black;
+  background-color: var(--keyWhiteShadow);
+  border-top: calc(var(--keyWidth) * 0.1) solid var(--clrPrimary);
+  border-right: 1px solid var(--keyWhiteBorder);
+  border-left: 1px solid var(--keyWhiteBorder);
+}
+.key-white .key-core {
+  border-radius: 0 0 0.4rem 0.4rem;
+  background: var(--keyWhite);
+  box-shadow: 0 0.2rem 0.2rem oklch(from var(--keyWhiteBorder) l c h / 0.1);
+}
+.key-white .key-bottom {
+  height: 10%;
+  transition: height 0.05s ease-in;
+  z-index: -1;
+}
+.key-white.playing .key-bottom {
+  height: 2%;
 }
 .key-black {
   position: absolute;
   top: 0;
   width: calc(var(--keyWidth) * 0.6);
   height: calc(var(--keyWidth) * 4);
-  color: white;
-  background-color: black;
+  color: #fff;
+  background-color: var(--keyBlack);
   z-index: 1;
 }
-.playing {
-  background: var(--clrPrimary);
+.key-black .key-core {
+  background-color: var(--keyBlack);
+}
+.key-black .key-bottom {
+  height: 20%;
+  background-color: blue;
+}
+.playing .key-core {
+  /* background-color: var(--clrPrimary) !important; */
 }

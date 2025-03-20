@@ -39,6 +39,7 @@
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
+- [ ] Narrow down keypress design on white keys (white keys on top, clip-path? for press anim)
 - [ ] ...
 - [ ] Metadata assets
 - [ ] Finalize index.html metadata

@@ -284,7 +284,8 @@ function PianoKey({
               left: `calc(var(--keyWidth) * ${index} + var(--keyWidth) * 0.7)`,
             }
       }>
-      {note.char}
+      <div className="key-core">{note.char}</div>
+      <div className="key-bottom"></div>
     </button>
   );
 }
