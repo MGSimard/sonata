@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState, useRef, type Dispatch, type SetStateAction } from "react";
 import * as Tone from "tone";
 import { getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
+import { getWhiteKeyShape } from "@/_utils/helpers";
 
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
@@ -269,10 +270,15 @@ function PianoKey({
   onPointerEnter: () => void;
   onPointerLeave: () => void;
 }) {
+  // Check if it's the last white key (highest note)
+  const isLastKey = isWhite && note.noteIndex === 72; // Using the last note in our keyMap (m key)
+
   return (
     <button
       type="button"
-      className={`key ${isWhite ? "key-white" : "key-black"} ${isPlaying ? "playing" : ""}`}
+      className={`key ${isWhite ? "key-white" : "key-black"}${isPlaying ? " playing" : ""}${
+        isWhite ? ` ${getWhiteKeyShape(note, isLastKey)}` : ""
+      }`}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerEnter={onPointerEnter}
