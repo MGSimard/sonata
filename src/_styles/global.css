@@ -112,6 +112,7 @@ button:not(:disabled) {
   height: 2%;
 }
 .key-black {
+  gap: 1%;
   position: absolute;
   top: 0;
   width: calc(var(--keyWidth) * 0.6);
@@ -121,12 +122,22 @@ button:not(:disabled) {
   z-index: 1;
 }
 .key-black .key-core {
-  background-color: var(--keyBlack);
+  background-color: var(--keyBlackShine);
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h);
+  transition: box-shadow 0.05s ease-in;
+}
+.key-black.playing .key-core {
+  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.4);
 }
 .key-black .key-bottom {
   height: 20%;
-  background-color: blue;
+  background-color: var(--keyBlackShine);
+  border-radius: 50% 50% 0 0;
+  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.9);
+  transition: height 0.05s ease-in;
 }
-.playing .key-core {
-  /* background-color: var(--clrPrimary) !important; */
+.key-black.playing .key-bottom {
+  height: 10%;
+  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.4);
 }
