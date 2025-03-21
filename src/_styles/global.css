@@ -15,6 +15,9 @@
 
   --clrPianoBg: oklch(25.18% 0.0064 34.3);
 
+  --pianoSidePadding: 6.5rem;
+  --pianoTrimWidth: 0.5rem;
+
   --keyWhiteWidth: 3.5rem;
   --clrKeyWhite: oklch(96.9% 0.0053 106.5);
   --clrKeyWhiteShadow: oklch(from var(--clrKeyWhite) calc(l - 0.05) c h);
@@ -74,15 +77,20 @@ ol {
 /* Add url / assets / noise.png repeating texture on top of background color */
 #piano {
   max-width: fit-content;
-  padding: 2rem 7rem;
+  padding: var(--pianoTrimWidth) var(--pianoTrimWidth) 2rem var(--pianoTrimWidth);
   background-color: var(--clrPianoBg);
   background-image: url(/assets/noise.png);
   background-size: 96px 96px;
   background-repeat: repeat;
   border-radius: 4rem 4rem 2rem 2rem;
 }
+#soundbar {
+  height: 4rem;
+  border: 1px solid red;
+  border-radius: calc(4rem - var(--pianoTrimWidth)) calc(4rem - var(--pianoTrimWidth)) 0 0;
+}
 #piano-header {
-  color: white;
+  padding: 0 var(--pianoSidePadding);
 }
 #piano-header h1 {
   font-size: 4rem;
@@ -96,6 +104,7 @@ ol {
   align-items: center;
   gap: 1rem;
   padding: 2rem 0;
+  color: white;
   text-align: center;
 }
 #display {
@@ -130,13 +139,11 @@ ol {
   inherits: false;
   initial-value: #111;
 }
-
 @property --buttonDark {
   syntax: "<color>";
   inherits: false;
   initial-value: #111;
 }
-
 .transpose-control {
   --buttonGlow: #111;
   --buttonDark: #111;
@@ -180,6 +187,9 @@ ol {
 #piano-liner {
   height: 2rem;
   background: linear-gradient(to top, oklch(from var(--clrPianoBg) calc(l - 0.05) c h) 70%, transparent);
+}
+#piano-keys-container {
+  padding: 0 var(--pianoSidePadding);
 }
 #piano-keys {
   position: relative;
