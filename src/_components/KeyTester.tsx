@@ -218,14 +218,16 @@ export const KeyTester = () => {
       </button>
       <div id="piano">
         <div id="piano-header">
-          <div>
+          <div id="control-board">
             <div id="transpose-controls">
-              <button type="button" onClick={() => adjustTranspose(-1)}>
-                -
-              </button>
-              <button type="button" onClick={() => adjustTranspose(1)}>
-                +
-              </button>
+              <div className="transpose-control">
+                <label htmlFor="transpose-minus">T-</label>
+                <button id="transpose-minus" type="button" onClick={() => adjustTranspose(-1)}></button>
+              </div>
+              <div className="transpose-control">
+                <label htmlFor="transpose-plus">T+</label>
+                <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
+              </div>
             </div>
             <div id="piano-display">Display / Transpose: {transpose}</div>
           </div>
