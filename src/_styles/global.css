@@ -4,7 +4,7 @@
 
   --coreFont: "Satoshi", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica,
     Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-  --displayFont: "Boska", serif;
+  --displayFont: "Boska", "Times New Roman", Georgia, Garamond, Times, serif;
   --monoFont: "JetBrains Mono", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
   --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
@@ -14,10 +14,9 @@
   --clrBgLight: #eeeeee;
   --clrBorder: #3b3b3b;
 
-  --clrPianoBg: oklch(25.18% 0.0064 34.3);
-
-  --pianoSidePadding: 6.5rem;
   --pianoTrimWidth: 0.5rem;
+  --pianoSidePadding: 6.5rem;
+  --clrPianoBg: oklch(25.18% 0.0064 34.3);
 
   --keyWhiteWidth: 3.5rem;
   --clrKeyWhite: oklch(96.9% 0.0053 106.5);
@@ -28,6 +27,12 @@
   --keyBlackHeight: calc(var(--keyWhiteWidth) * 3.7);
   --clrKeyBlack: oklch(7.06% 0.0145 82.32);
   --clrKeyBlackShine: oklch(25.65% 0.004 84.58);
+}
+[data-theme="light"] {
+  /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
+}
+[data-theme="dark"] {
+  /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
 }
 * {
   margin: 0;
