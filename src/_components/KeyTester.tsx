@@ -110,6 +110,9 @@ export const KeyTester = () => {
         C8: "C8.mp3",
       },
       baseUrl: "/assets/notes/",
+      release: 1,
+      volume: -10,
+      attack: 0,
     }).toDestination()
   );
 
@@ -172,7 +175,7 @@ export const KeyTester = () => {
   const playNote = (noteIndex: NoteIndex) => {
     console.log("playNote", noteIndex);
     const noteName = getNoteName(noteIndex, transpose);
-    sampler.current.triggerAttackRelease(noteName, 10);
+    sampler.current.triggerAttack(noteName);
     return noteName;
   };
 
