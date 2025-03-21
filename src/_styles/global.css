@@ -4,7 +4,7 @@
 
   --coreFont: serif; /* Include fallbacks*/
 
-  --clrPrimary: #ff0000;
+  --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
   --clrSecondary: #000;
   --clrText: #000;
   --clrBg: #000000;
@@ -96,14 +96,7 @@ button:not(:disabled) {
   border-radius: 999rem;
   padding: 0.4rem;
   color: white;
-  background: conic-gradient(
-    var(--glow) 2%,
-    var(--darker),
-    var(--glow) 48%,
-    var(--glow) 52%,
-    var(--darker),
-    var(--glow) 98%
-  );
+  background: conic-gradient(var(--glow), var(--darker), var(--glow), var(--darker), var(--glow));
 }
 .transpose-control label {
   position: absolute;
@@ -140,7 +133,6 @@ button:not(:disabled) {
   -webkit-tap-highlight-color: transparent;
   touch-action: none;
   -webkit-user-drag: none;
-  user-drag: none;
   scrollbar-width: thin;
 }
 #piano-keys > button {
