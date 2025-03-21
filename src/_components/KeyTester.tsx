@@ -216,7 +216,7 @@ export const KeyTester = () => {
       <button type="button" onClick={handleStart}>
         Start Tone.js
       </button>
-      <div id="piano">
+      <div id="piano" className="noselect">
         <div id="soundbar"></div>
         <div id="piano-header">
           <h1>Sonata</h1>

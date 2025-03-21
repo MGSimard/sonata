@@ -72,6 +72,17 @@ ul,
 ol {
   list-style: none;
 }
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  -webkit-user-drag: none;
+}
 
 /* PIANO */
 /* Add url / assets / noise.png repeating texture on top of background color */
@@ -202,15 +213,6 @@ ol {
   background-color: var(--keyBlackShine);
   outline: none;
   overflow-x: scroll;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: none;
-  -webkit-user-drag: none;
   scrollbar-width: thin;
 }
 .key {
