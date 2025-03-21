@@ -111,7 +111,7 @@ export const KeyTester = () => {
       },
       baseUrl: "/assets/notes/",
       release: 1,
-      volume: -10,
+      volume: -7,
       attack: 0,
     }).toDestination()
   );
@@ -213,40 +213,42 @@ export const KeyTester = () => {
         Start Tone.js
       </button>
       <TransposeController transpose={transpose} setTranspose={setTranspose} />
-      <div id="piano-keys">
-        {Object.entries(keyMap).map(([key, notes], keyIndex) => {
-          const whiteNote = notes[0];
-          const blackNote = notes[1];
+      <div id="piano">
+        <div id="piano-keys">
+          {Object.entries(keyMap).map(([key, notes], keyIndex) => {
+            const whiteNote = notes[0];
+            const blackNote = notes[1];
 
-          return (
-            <Fragment key={key}>
-              {whiteNote && (
-                <PianoKey
-                  note={whiteNote}
-                  isWhite={true}
-                  index={keyIndex}
-                  isPlaying={activeNotes.has(whiteNote.noteIndex)}
-                  onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
-                  onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
-                  onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
-                  onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
-                />
-              )}
-              {blackNote && (
-                <PianoKey
-                  note={blackNote}
-                  isWhite={false}
-                  index={keyIndex}
-                  isPlaying={activeNotes.has(blackNote.noteIndex)}
-                  onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
-                  onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
-                  onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
-                  onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
-                />
-              )}
-            </Fragment>
-          );
-        })}
+            return (
+              <Fragment key={key}>
+                {whiteNote && (
+                  <PianoKey
+                    note={whiteNote}
+                    isWhite={true}
+                    index={keyIndex}
+                    isPlaying={activeNotes.has(whiteNote.noteIndex)}
+                    onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
+                    onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
+                    onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
+                    onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
+                  />
+                )}
+                {blackNote && (
+                  <PianoKey
+                    note={blackNote}
+                    isWhite={false}
+                    index={keyIndex}
+                    isPlaying={activeNotes.has(blackNote.noteIndex)}
+                    onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
+                    onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
+                    onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
+                    onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
+                  />
+                )}
+              </Fragment>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,8 @@
   --clrBgLight: #eeeeee;
   --clrBorder: #3b3b3b;
 
+  --pianoColor: oklch(25.18% 0.0064 34.3);
+
   --keyWhiteWidth: 3.5rem;
   --keyWhite: oklch(96.9% 0.0053 106.5);
   --keyWhiteShadow: oklch(from var(--keyWhite) calc(l - 0.05) c h);
@@ -25,7 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: 1px solid red !important; */
+  border: 1px solid red !important;
 }
 html {
   font-family: var(--coreFont);
@@ -63,11 +65,19 @@ button:not(:disabled) {
 }
 
 /* PIANO */
+#piano {
+  max-width: fit-content;
+  padding: 0 calc(var(--keyWhiteWidth) * 2);
+  background-color: var(--pianoColor);
+  border: 5px solid cyan !important;
+}
 #piano-keys {
   position: relative;
   display: flex;
+  background-color: var(--keyBlackShine);
+  border: 5px solid yellow !important;
+  outline: none;
   overflow-x: scroll;
-  border: 1px solid black;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -78,8 +88,7 @@ button:not(:disabled) {
   touch-action: none;
   -webkit-user-drag: none;
   user-drag: none;
-  outline: none;
-  background-color: var(--keyBlackShine);
+  scrollbar-width: thin;
 }
 #piano-keys > button {
   flex-shrink: 0;

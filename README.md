@@ -25,7 +25,8 @@
 - [x] Make decision on tone.js usage vs raw Web Audio API
 - [x] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
 - [ ] Get a better sample library (currently using exported custom from fl studio)
-- [ ] Find out how to prevent audio overflows causing noise and crackling
+- [ ] (p key and wetness of this library are especially bad)
+- [ ] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)
 - [ ] ...
 - [ ] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
