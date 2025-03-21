@@ -29,6 +29,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid red !important; */
 }
 html {
   font-family: var(--coreFont);
@@ -64,12 +65,16 @@ button {
 button:not(:disabled) {
   cursor: pointer;
 }
+ul,
+ol {
+  list-style: none;
+}
 
 /* PIANO */
 /* Add url / assets / noise.png repeating texture on top of background color */
 #piano {
   max-width: fit-content;
-  padding: 6rem calc(var(--keyWhiteWidth) * 2) 2rem calc(var(--keyWhiteWidth) * 2);
+  padding: 0 calc(var(--keyWhiteWidth) * 2) 2rem calc(var(--keyWhiteWidth) * 2);
   background-color: var(--clrPianoBg);
   background-image: url(/assets/noise.png);
   background-size: 96px 96px;
@@ -82,7 +87,29 @@ button:not(:disabled) {
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 2rem 0;
   text-align: center;
+}
+#display {
+  font-family: "JetBrains Mono";
+  line-height: 1.2;
+  font-size: 1.2rem;
+  background-color: #111;
+  padding: 0.5rem 5rem;
+}
+#screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20ch;
+  height: 10ch;
+  padding: 1ch;
+  text-align: start;
+  color: white;
+  text-shadow: 0 0 0.5rem white;
+  background-color: oklch(from var(--clrPrimary) 0.3 0.1 h);
+  box-shadow: inset 0 0 3rem oklch(from var(--clrPrimary) 1 c h / 0.3);
+  overflow: hidden;
 }
 #transpose-controls {
   display: flex;

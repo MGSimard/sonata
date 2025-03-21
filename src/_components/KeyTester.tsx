@@ -229,7 +229,14 @@ export const KeyTester = () => {
                 <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
               </div>
             </div>
-            <div id="piano-display">Display / Transpose: {transpose}</div>
+            <div id="display">
+              <div id="screen">
+                <ul>
+                  <li>- Volume: N/A</li>
+                  <li>- Transpose: {transpose}</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div id="piano-liner"></div>
         </div>
