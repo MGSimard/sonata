@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useRef, type Dispatch, type SetStateAction } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import * as Tone from "tone";
 import { getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
 import { getWhiteKeyShape } from "@/_utils/helpers";

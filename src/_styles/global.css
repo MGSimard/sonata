@@ -86,9 +86,14 @@ ol {
 }
 #soundbar {
   height: 4rem;
-  border: 1px solid red;
+  background-color: oklch(from var(--clrPianoBg) calc(l - 0.02) c h);
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='2.5' fill='currentColor'/%3E%3C/svg%3E");
+  background-size: 3px 3px;
+  border: 0.1rem solid oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
   border-radius: calc(4rem - var(--pianoTrimWidth)) calc(4rem - var(--pianoTrimWidth)) 0 0;
+  box-shadow: 0 0 0.1rem black;
 }
+
 #piano-header {
   padding: 0 var(--pianoSidePadding);
 }
