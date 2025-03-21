@@ -30,6 +30,7 @@
 - [ ] ...
 - [ ] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
+- [ ] Grain texture on piano casing
 - [ ] ...
 - [ ] Core Piano functions
 - [ ] Sustain (On/Off/Hold)

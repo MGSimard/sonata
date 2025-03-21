@@ -206,16 +206,29 @@ export const KeyTester = () => {
     }
   };
 
+  const adjustTranspose = (amount: number) => {
+    setTranspose((prev) => Math.max(-12, Math.min(12, prev + amount)));
+  };
+
   return (
     <div>
       KeyTester
       <button type="button" onClick={handleStart}>
         Start Tone.js
       </button>
-      <TransposeController transpose={transpose} setTranspose={setTranspose} />
       <div id="piano">
         <div id="piano-header">
-          hello
+          <div>
+            <div id="transpose-controls">
+              <button type="button" onClick={() => adjustTranspose(-1)}>
+                -
+              </button>
+              <button type="button" onClick={() => adjustTranspose(1)}>
+                +
+              </button>
+            </div>
+            <div id="piano-display">Display / Transpose: {transpose}</div>
+          </div>
           <div id="piano-liner"></div>
         </div>
         <div id="piano-keys">
@@ -300,27 +313,5 @@ function PianoKey({
       <div className="key-core">{note.char}</div>
       <div className="key-bottom"></div>
     </button>
-  );
-}
-
-interface TransposeControllerProps {
-  transpose: number;
-  setTranspose: Dispatch<SetStateAction<number>>;
-}
-function TransposeController({ transpose, setTranspose }: TransposeControllerProps) {
-  const adjustTranspose = (amount: number) => {
-    setTranspose((prev) => Math.max(-12, Math.min(12, prev + amount)));
-  };
-
-  return (
-    <div>
-      <button type="button" onClick={() => adjustTranspose(-1)}>
-        -
-      </button>
-      <span>Transposition: {transpose}</span>
-      <button type="button" onClick={() => adjustTranspose(1)}>
-        +
-      </button>
-    </div>
   );
 }

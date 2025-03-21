@@ -72,8 +72,15 @@ button:not(:disabled) {
 #piano-header {
   color: white;
 }
+#transpose-controls button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999rem;
+  color: white;
+  background-color: black;
+}
 #piano-liner {
-  height: 0.8rem;
+  height: 2rem;
   background: linear-gradient(to top, oklch(from var(--pianoColor) calc(l - 0.1) c h) 70%, transparent);
 }
 #piano-keys {
