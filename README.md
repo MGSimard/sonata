@@ -24,6 +24,7 @@
 
 - [x] Make decision on tone.js usage vs raw Web Audio API
 - [x] Source an asset pack for core VST, <100kb per note (Wiggle room for low notes)
+- [ ] Dump unused font weights
 - [ ] Get a better sample library (currently using exported custom from fl studio)
 - [ ] (p key and wetness of this library are especially bad)
 - [ ] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)

@@ -218,6 +218,7 @@ export const KeyTester = () => {
       </button>
       <div id="piano">
         <div id="piano-header">
+          <h1>Sonata</h1>
           <div id="control-board">
             <div id="transpose-controls">
               <div className="transpose-control">

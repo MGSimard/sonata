@@ -74,14 +74,22 @@ ol {
 /* Add url / assets / noise.png repeating texture on top of background color */
 #piano {
   max-width: fit-content;
-  padding: 0 calc(var(--keyWhiteWidth) * 2) 2rem calc(var(--keyWhiteWidth) * 2);
+  padding: 2rem 7rem;
   background-color: var(--clrPianoBg);
   background-image: url(/assets/noise.png);
   background-size: 96px 96px;
   background-repeat: repeat;
+  border-radius: 4rem 4rem 2rem 2rem;
 }
 #piano-header {
   color: white;
+}
+#piano-header h1 {
+  font-size: 4rem;
+  font-family: "Boska";
+  font-weight: 500; /* Medium */
+  color: oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
+  text-align: center;
 }
 #control-board {
   display: flex;
@@ -92,10 +100,11 @@ ol {
 }
 #display {
   font-family: "JetBrains Mono";
-  line-height: 1.2;
-  font-size: 1.2rem;
-  background-color: #111;
   padding: 0.5rem 5rem;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  background-color: #111;
+  border-radius: 0.4rem;
 }
 #screen {
   display: flex;
@@ -116,7 +125,21 @@ ol {
   gap: 2rem;
   text-align: center;
 }
+@property --buttonGlow {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #111;
+}
+
+@property --buttonDark {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #111;
+}
+
 .transpose-control {
+  --buttonGlow: #111;
+  --buttonDark: #111;
   --glow: oklch(from var(--clrPrimary) 1 0.1 h);
   --darker: oklch(from var(--clrPrimary) 0.3 c h);
   position: relative;
@@ -125,7 +148,18 @@ ol {
   border-radius: 999rem;
   padding: 0.4rem;
   color: white;
-  background: conic-gradient(var(--glow), var(--darker), var(--glow), var(--darker), var(--glow));
+  background: conic-gradient(
+    var(--buttonGlow),
+    var(--buttonDark),
+    var(--buttonGlow),
+    var(--buttonDark),
+    var(--buttonGlow)
+  );
+  transition: --buttonGlow 0.1s ease, --buttonDark 0.1s ease;
+}
+.transpose-control:has(button:active) {
+  --buttonGlow: var(--glow);
+  --buttonDark: var(--darker);
 }
 .transpose-control label {
   position: absolute;
