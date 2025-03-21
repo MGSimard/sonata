@@ -27,7 +27,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid red !important;
 }
 html {
   font-family: var(--coreFont);
@@ -67,15 +66,20 @@ button:not(:disabled) {
 /* PIANO */
 #piano {
   max-width: fit-content;
-  padding: 0 calc(var(--keyWhiteWidth) * 2);
+  padding: 0 calc(var(--keyWhiteWidth) * 2) 2rem calc(var(--keyWhiteWidth) * 2);
   background-color: var(--pianoColor);
-  border: 5px solid cyan !important;
+}
+#piano-header {
+  color: white;
+}
+#piano-liner {
+  height: 0.8rem;
+  background: linear-gradient(to top, oklch(from var(--pianoColor) calc(l - 0.1) c h) 70%, transparent);
 }
 #piano-keys {
   position: relative;
   display: flex;
   background-color: var(--keyBlackShine);
-  border: 5px solid yellow !important;
   outline: none;
   overflow-x: scroll;
   -webkit-touch-callout: none;

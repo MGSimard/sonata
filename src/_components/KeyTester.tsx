@@ -214,6 +214,10 @@ export const KeyTester = () => {
       </button>
       <TransposeController transpose={transpose} setTranspose={setTranspose} />
       <div id="piano">
+        <div id="piano-header">
+          hello
+          <div id="piano-liner"></div>
+        </div>
         <div id="piano-keys">
           {Object.entries(keyMap).map(([key, notes], keyIndex) => {
             const whiteNote = notes[0];
