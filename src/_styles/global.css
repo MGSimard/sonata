@@ -4,6 +4,8 @@
 
   --coreFont: serif; /* Include fallbacks*/
 
+  /* Jetbrains mono 1.2 line spacing */
+
   --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
   --clrSecondary: #000;
   --clrText: #000;
@@ -14,14 +16,14 @@
   --clrPianoBg: oklch(25.18% 0.0064 34.3);
 
   --keyWhiteWidth: 3.5rem;
-  --keyWhite: oklch(96.9% 0.0053 106.5);
-  --keyWhiteShadow: oklch(from var(--keyWhite) calc(l - 0.05) c h);
-  --keyWhiteBorder: oklch(from var(--keyWhite) calc(l - 0.7) calc(c + 0.01) calc(h + 1));
+  --clrKeyWhite: oklch(96.9% 0.0053 106.5);
+  --clrKeyWhiteShadow: oklch(from var(--clrKeyWhite) calc(l - 0.05) c h);
+  --clrKeyWhiteBorder: oklch(from var(--clrKeyWhite) calc(l - 0.7) calc(c + 0.01) calc(h + 1));
 
   --keyBlackWidth: calc(var(--keyWhiteWidth) * 0.6);
-  --keyBlackHeight: calc(var(--keyWhiteWidth) * 4);
-  --keyBlack: oklch(7.06% 0.0145 82.32);
-  --keyBlackShine: oklch(25.65% 0.004 84.58);
+  --keyBlackHeight: calc(var(--keyWhiteWidth) * 3.7);
+  --clrKeyBlack: oklch(7.06% 0.0145 82.32);
+  --clrKeyBlackShine: oklch(25.65% 0.004 84.58);
 }
 * {
   margin: 0;
@@ -116,7 +118,7 @@ button:not(:disabled) {
 }
 #piano-liner {
   height: 2rem;
-  background: linear-gradient(to top, oklch(from var(--clrPianoBg) calc(l - 0.1) c h) 70%, transparent);
+  background: linear-gradient(to top, oklch(from var(--clrPianoBg) calc(l - 0.05) c h) 70%, transparent);
 }
 #piano-keys {
   position: relative;
@@ -135,13 +137,13 @@ button:not(:disabled) {
   -webkit-user-drag: none;
   scrollbar-width: thin;
 }
-#piano-keys > button {
-  flex-shrink: 0;
-}
 .key {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  font-family: "JetBrains Mono";
+  font-weight: 100;
   overflow: hidden;
 }
 .key-core {
@@ -154,12 +156,25 @@ button:not(:disabled) {
 .key-white {
   width: var(--keyWhiteWidth);
   height: calc(var(--keyWhiteWidth) * 6);
-  color: black;
-  background-color: var(--keyWhiteShadow);
+  color: oklch(from var(--clrKeyWhite) calc(l - 0.2) c h);
+  background-color: var(--clrKeyWhiteShadow);
   border-top: calc(var(--keyWhiteWidth) * 0.1) solid var(--clrPrimary);
-  border-right: 1px solid var(--keyWhiteBorder);
-  border-left: 1px solid var(--keyWhiteBorder);
+  border-right: 1px solid var(--clrKeyWhiteBorder);
+  border-left: 1px solid var(--clrKeyWhiteBorder);
   transition: clip-path 0.05s ease-in;
+}
+.key-white .key-core {
+  border-radius: 0 0 0.4rem 0.4rem;
+  background: linear-gradient(to bottom, var(--clrKeyWhiteShadow), var(--clrKeyWhite) 2rem);
+  box-shadow: 0 0.2rem 0.2rem oklch(from var(--clrKeyWhiteBorder) l c h / 0.1);
+}
+.key-white .key-bottom {
+  height: 5%;
+  transition: height 0.05s ease-in;
+  z-index: -1;
+}
+.key-white.playing .key-bottom {
+  height: 2%;
 }
 .right-L {
   clip-path: polygon(
@@ -175,8 +190,8 @@ button:not(:disabled) {
   clip-path: polygon(
     0 0,
     calc(100% - (var(--keyBlackWidth) / 2)) 0,
-    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 5%),
-    100% calc(var(--keyBlackHeight) + 5%),
+    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 2%),
+    100% calc(var(--keyBlackHeight) + 2%),
     100% 100%,
     0 100%
   );
@@ -197,12 +212,12 @@ button:not(:disabled) {
   clip-path: polygon(
     calc(var(--keyBlackWidth) / 2) 0,
     calc(100% - (var(--keyBlackWidth) / 2)) 0,
-    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 5%),
-    100% calc(var(--keyBlackHeight) + 5%),
+    calc(100% - (var(--keyBlackWidth) / 2)) calc(var(--keyBlackHeight) + 2%),
+    100% calc(var(--keyBlackHeight) + 2%),
     100% 100%,
     0 100%,
-    0 calc(var(--keyBlackHeight) + 5%),
-    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 5%)
+    0 calc(var(--keyBlackHeight) + 2%),
+    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 2%)
   );
 }
 .left-L {
@@ -221,50 +236,37 @@ button:not(:disabled) {
     100% 0,
     100% 100%,
     0 100%,
-    0 calc(var(--keyBlackHeight) + 5%),
-    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 5%)
+    0 calc(var(--keyBlackHeight) + 2%),
+    calc(var(--keyBlackWidth) / 2) calc(var(--keyBlackHeight) + 2%)
   );
 }
-.key-white .key-core {
-  border-radius: 0 0 0.4rem 0.4rem;
-  background: var(--keyWhite);
-  box-shadow: 0 0.2rem 0.2rem oklch(from var(--keyWhiteBorder) l c h / 0.1);
-}
-.key-white .key-bottom {
-  height: 10%;
-  transition: height 0.05s ease-in;
-  z-index: -1;
-}
-.key-white.playing .key-bottom {
-  height: 2%;
-}
 .key-black {
-  gap: 1%;
   position: absolute;
   top: 0;
+  gap: 1%;
   width: var(--keyBlackWidth);
-  height: calc(var(--keyWhiteWidth) * 4);
-  color: #fff;
-  background-color: var(--keyBlack);
+  height: var(--keyBlackHeight);
+  color: oklch(from var(--clrKeyBlack) calc(l + 0.5) c h);
+  background-color: var(--clrKeyBlack);
   z-index: 1;
 }
 .key-black .key-core {
-  background-color: var(--keyBlackShine);
+  background: linear-gradient(to bottom, var(--clrKeyBlack), var(--clrKeyBlackShine) 2rem);
   border-radius: 0 0 1rem 1rem;
-  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h);
+  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--clrKeyBlackShine) calc(l + 0.7) c h);
   transition: box-shadow 0.05s ease-in;
 }
 .key-black.playing .key-core {
-  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.4);
+  box-shadow: inset 0 -0.6rem 0.1rem -0.5rem oklch(from var(--clrKeyBlackShine) calc(l + 0.7) c h / 0.4);
 }
 .key-black .key-bottom {
-  height: 20%;
-  background-color: var(--keyBlackShine);
+  height: 10%;
+  background-color: var(--clrKeyBlackShine);
   border-radius: 50% 50% 0 0;
-  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.9);
+  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--clrKeyBlackShine) calc(l + 0.7) c h / 0.9);
   transition: height 0.05s ease-in;
 }
 .key-black.playing .key-bottom {
-  height: 10%;
-  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--keyBlackShine) calc(l + 0.7) c h / 0.4);
+  height: 5%;
+  box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--clrKeyBlackShine) calc(l + 0.7) c h / 0.4);
 }
