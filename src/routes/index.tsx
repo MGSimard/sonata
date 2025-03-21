@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 function App() {
   return (
     <main>
-      App
+      Work in Progress Jumpscare
       <KeyTester />
     </main>
   );
