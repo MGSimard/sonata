@@ -2,9 +2,10 @@
   --siteMaxWidth: 1400px;
   --sitePadding: 2rem;
 
-  --coreFont: serif; /* Include fallbacks*/
-
-  /* Jetbrains mono 1.2 line spacing */
+  --coreFont: "Satoshi", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica,
+    Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --displayFont: "Boska", serif;
+  --monoFont: "JetBrains Mono", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
   --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
   --clrSecondary: #000;
@@ -110,22 +111,24 @@ ol {
 }
 #piano-header h1 {
   font-size: 4rem;
-  font-family: "Boska";
+  font-family: var(--displayFont);
   font-weight: 500; /* Medium */
   color: oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
   text-align: center;
 }
 #control-board {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
   color: white;
   text-align: center;
 }
 #display {
-  font-family: "JetBrains Mono";
   padding: 0.5rem 5rem;
+  font-family: var(--monoFont);
   font-size: 1.2rem;
   line-height: 1.2;
   background-color: #111;
@@ -146,9 +149,18 @@ ol {
   overflow: hidden;
 }
 #transpose-controls {
+  position: absolute;
+  left: 0;
   display: flex;
   gap: 2rem;
   text-align: center;
+}
+#transpose-controls label {
+  position: absolute;
+  bottom: -3rem;
+  transform: translateX(-50%);
+  left: 50%;
+  border: 1px solid red;
 }
 @property --buttonGlow {
   syntax: "<color>";
@@ -184,15 +196,6 @@ ol {
   --buttonGlow: var(--glow);
   --buttonDark: var(--darker);
 }
-.transpose-control label {
-  position: absolute;
-  top: -3rem;
-  transform: translateX(-50%);
-  left: 50%;
-  max-width: 120%;
-  width: 120%;
-  border: 1px solid red;
-}
 .transpose-control button {
   width: 100%;
   height: 100%;
@@ -214,14 +217,16 @@ ol {
   outline: none;
   overflow-x: scroll;
   scrollbar-width: thin;
+  scrollbar-color: var(--clrPianoBg) oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
 }
 .key {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  font-family: "JetBrains Mono";
+  font-family: var(--monoFont);
   font-weight: 100;
+  line-height: 1.2;
   overflow: hidden;
 }
 .key-core {
@@ -250,6 +255,9 @@ ol {
   height: 5%;
   transition: height 0.05s ease-in;
   z-index: -1;
+}
+.key-white.playing .key-core {
+  background: oklch(from var(--clrKeyWhite) calc(l - 0.025) c h);
 }
 .key-white.playing .key-bottom {
   height: 2%;

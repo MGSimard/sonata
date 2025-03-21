@@ -1,15 +1,85 @@
-/* JETBRAINS MONO
-ExtraBold: 800
-Bold: 700
-SemiBold: 600
-Medium: 500
-Regular: 400
-Light: 300
-ExtraLight: 200
-Thin: 100 
-*/
+/* SATOSHI (CORE) */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Light.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-Light.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-LightItalic.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Regular.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Italic.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-Italic.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Medium.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-MediumItalic.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Bold.woff2") format("woff2"), url("/fonts/satoshi/Satoshi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-BoldItalic.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-Black.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-Black.woff") format("woff");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi/Satoshi-BlackItalic.woff2") format("woff2"),
+    url("/fonts/satoshi/Satoshi-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
 
-/* JETBRAINS MONO REGULAR */
+/* JETBRAINS MONO (KEYS & DISPLAY) */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2");
@@ -17,7 +87,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO REGULAR ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Italic.woff2") format("woff2");
@@ -25,8 +94,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/* JETBRAINS MONO THIN */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Thin.woff2") format("woff2");
@@ -34,7 +101,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO THIN ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-ThinItalic.woff2") format("woff2");
@@ -42,8 +108,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/* JETBRAINS MONO EXTRALIGHT */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-ExtraLight.woff2") format("woff2");
@@ -51,7 +115,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO EXTRALIGHT ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-ExtraLightItalic.woff2") format("woff2");
@@ -59,8 +122,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/* JETBRAINS MONO LIGHT */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Light.woff2") format("woff2");
@@ -68,7 +129,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO LIGHT ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-LightItalic.woff2") format("woff2");
@@ -76,8 +136,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/* JETBRAINS MONO MEDIUM */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2") format("woff2");
@@ -85,7 +143,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO MEDIUM ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-MediumItalic.woff2") format("woff2");
@@ -93,8 +150,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/* GEIST SANS SEMIBOLD */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-SemiBold.woff2") format("woff2");
@@ -102,7 +157,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO SEMIBOLD ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-SemiBoldItalic.woff2") format("woff2");
@@ -110,8 +164,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-
-/*  BOLD */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2");
@@ -119,7 +171,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO BOLD ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-BoldItalic.woff2") format("woff2");
@@ -127,7 +178,6 @@ Thin: 100
   font-style: italic;
   font-display: swap;
 }
-/* JETBRAINS MONO EXTRABOLD */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-ExtraBold.woff2") format("woff2");
@@ -135,7 +185,6 @@ Thin: 100
   font-style: normal;
   font-display: swap;
 }
-/* JETBRAINS MONO EXTRABOLD ITALIC */
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/jetbrains-mono/JetBrainsMono-ExtraBoldItalic.woff2") format("woff2");
@@ -144,23 +193,7 @@ Thin: 100
   font-display: swap;
 }
 
-/*BOSKA
-
-* Boska Extralight 
-* Boska ExtralightItalic 
-* Boska Light 
-* Boska LightItalic 
-* Boska Regular 
-* Boska Italic 
-* Boska Medium 
-* Boska MediumItalic 
-* Boska Bold 
-* Boska BoldItalic 
-* Boska Black 
-* Boska BlackItalic 
-* Boska Variable (Variable font)
-* Boska VariableItalic (Variable font)
-*/
+/* BOSKA (SONATA LOGO, HEADINGS) */
 @font-face {
   font-family: "Boska";
   src: url("/fonts/boska/Boska-Extralight.woff2") format("woff2"),

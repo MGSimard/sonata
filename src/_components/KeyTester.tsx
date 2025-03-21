@@ -222,12 +222,11 @@ export const KeyTester = () => {
           <h1>Sonata</h1>
           <div id="control-board">
             <div id="transpose-controls">
+              <label htmlFor="transpose-controls">Transpose</label>
               <div className="transpose-control">
-                <label htmlFor="transpose-minus">T-</label>
                 <button id="transpose-minus" type="button" onClick={() => adjustTranspose(-1)}></button>
               </div>
               <div className="transpose-control">
-                <label htmlFor="transpose-plus">T+</label>
                 <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
               </div>
             </div>
