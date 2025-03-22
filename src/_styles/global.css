@@ -148,6 +148,9 @@ ul,
 ol {
   list-style: none;
 }
+summary {
+  cursor: pointer;
+}
 .limited-width {
   max-width: var(--siteMaxWidth);
   width: 100%;
@@ -491,13 +494,16 @@ dialog[open] {
 dialog[open]::backdrop {
   animation: fade 0.2s ease forwards;
 }
-dialog section {
-  padding: 1rem 0;
-}
 .dialog-header {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
+  padding-bottom: 2rem;
+}
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 .dialog-header button svg {
   width: 2rem;
@@ -515,4 +521,10 @@ dialog h3 {
     transform: unset;
     opacity: 1;
   }
+}
+#info-dialog details[open] summary {
+  color: var(--clrPrimary);
+}
+#info-dialog h3 {
+  display: inline-block;
 }

@@ -30,21 +30,25 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] Get a better sample library (currently using exported custom from fl studio)
 - [ ] (p key and wetness of this library are especially bad)
 - [ ] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)
+- [ ] Not browser, not files (tested vp files), looks like volume related or buffer overflow.
+- [ ] But other apps using Tonejs have much more volume, so need to do some research on this issue.
 - [ ] ...
 - [x] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
 - [x] Adjust theme data in index and manifest
 - [ ] ...
-- [ ] Core Piano functions
+- [x] Core Piano functions
 - [ ] Sustain (On/Off/Hold)
 - [ ] Note history
+- [ ] Metronome
 - [ ] Volume control
-- [ ] Note transposition setting (-12, +12)
+- [x] Note transposition setting (-12, +12)
 - [ ] Slight black key offsets (towards edges, center black key center)
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
 - [ ] Switch white key layout around so you don't get keyspam on leftclick near clip-path on animation
+- [ ] Allow color customization in a settings popup (write to localstorage for persistence?)
 - [ ] ...
 - [x] Metadata assets
 - [x] Finalize index.html metadata
