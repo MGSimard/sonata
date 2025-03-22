@@ -8,15 +8,9 @@
   --monoFont: "JetBrains Mono", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
   --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
-  --clrSecondary: #000;
-  --clrText: white;
-  --clrBg: oklch(17.44% 0.0081 285.53);
-  --clrBgLight: oklch(22.73% 0.0081 285.53);
-  --clrBorder: #3b3b3b;
 
   --pianoTrimWidth: 0.5rem;
   --pianoSidePadding: 6.5rem;
-  --clrPianoBg: oklch(25.18% 0.0064 34.3);
 
   --keyWhiteWidth: 3.5rem;
   --clrKeyWhite: oklch(96.9% 0.0053 106.5);
@@ -30,15 +24,25 @@
 }
 [data-theme="light"] {
   /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
+  --clrText: black;
+  --clrBg: oklch(96% 0 0);
+  --clrBgLight: oklch(86.51% 0 0);
+  --clrBorder: oklch(58.77% 0 0);
+  --clrPianoBg: oklch(100% 0 0);
 }
 [data-theme="dark"] {
   /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
+  --clrText: white;
+  --clrBg: oklch(17.44% 0.0081 285.53);
+  --clrBgLight: oklch(22.73% 0.0081 285.53);
+  --clrBorder: #3b3b3b;
+  --clrPianoBg: oklch(25.18% 0.0064 34.3);
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid red !important;
+  /* border: 1px solid red !important; */
 }
 html {
   font-family: var(--coreFont);
@@ -77,18 +81,25 @@ nav {
   display: flex;
   align-items: center;
   gap: 1rem;
-
   font-size: 3rem;
 }
 #nav-logo img {
   width: 4rem;
   height: 4rem;
 }
-#nav-links {
+#nav-controls {
   display: flex;
   align-items: center;
   gap: 2rem;
-  font-size: 2rem;
+}
+#nav-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#nav-controls button svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 /* DEFAULTS */
@@ -101,12 +112,14 @@ button {
   display: block;
   border: none;
   outline: none;
+  background: none;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
-img {
+img,
+svg {
   display: block;
   max-width: 100%;
 }
@@ -144,13 +157,12 @@ ol {
 #soundbar {
   height: 4rem;
   background-color: oklch(from var(--clrPianoBg) calc(l - 0.02) c h);
-  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='2.5' fill='currentColor'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='2.5' fill='rgba(0,0,0,0.2)'/%3E%3C/svg%3E");
   background-size: 3px 3px;
   border: 0.1rem solid oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
   border-radius: calc(4rem - var(--pianoTrimWidth)) calc(4rem - var(--pianoTrimWidth)) 0 0;
   box-shadow: 0 0 0.1rem black;
 }
-
 #piano-header {
   padding: 0 var(--pianoSidePadding);
 }
@@ -168,7 +180,7 @@ ol {
   justify-content: center;
   gap: 1rem;
   padding: 2rem 0;
-  color: white;
+  color: var(--clrText);
   text-align: center;
 }
 #display {
@@ -228,7 +240,6 @@ ol {
   height: 4rem;
   border-radius: 999rem;
   padding: 0.4rem;
-  color: white;
   background: conic-gradient(
     var(--buttonGlow),
     var(--buttonDark),
