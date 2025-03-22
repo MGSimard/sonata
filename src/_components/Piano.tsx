@@ -292,8 +292,7 @@ function PianoKey({
   onPointerEnter: () => void;
   onPointerLeave: () => void;
 }) {
-  // Check if it's the last white key (highest note)
-  const isLastKey = isWhite && note.noteIndex === 72; // Using the last note in our keyMap (m key)
+  const isLastKey = isWhite && note.noteIndex === 72;
 
   return (
     <button
