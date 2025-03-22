@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "MGSimard <mgsimard.dev@gmail.com> (https://mgsimard.dev)",
-  "description": "",
+  "description": "Sonata — a simple, elegant, and accessible piano app.",
   "license": "MIT",
   "type": "module",
   "repository": {

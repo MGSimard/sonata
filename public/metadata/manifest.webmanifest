@@ -1,6 +1,7 @@
 {
   "name": "Sonata",
   "short_name": "Sonata",
+  "description": "Sonata — a simple, elegant, and accessible piano app.",
   "icons": [
     {
       "src": "/metadata/favicon.ico",

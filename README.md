@@ -1,5 +1,7 @@
 # Sonata
 
+Sonata — a simple, elegant, and accessible piano app.
+
 ## Notes
 
 - Notes 1-88
