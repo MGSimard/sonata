@@ -24,7 +24,6 @@
   --clrKeyBlackShine: oklch(25.65% 0.004 84.58);
 }
 [data-theme="light"] {
-  /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
   --clrText: black;
   --clrBg: oklch(96% 0 0);
   --clrBgLight: oklch(86.51% 0 0);
@@ -32,7 +31,6 @@
   --clrPianoBg: oklch(100% 0 0);
 }
 [data-theme="dark"] {
-  /* clrPrimary, clrSecondary, clrText, clrBg, clrBgLight, clrBorder*/
   --clrText: white;
   --clrBg: oklch(17.44% 0.0081 285.53);
   --clrBgLight: oklch(22.73% 0.0081 285.53);
