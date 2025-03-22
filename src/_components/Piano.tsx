@@ -208,6 +208,9 @@ export const Piano = () => {
       <div id="soundbar"></div>
       <div id="piano-header">
         <h1>Sonata</h1>
+        <button type="button" onClick={handleStart}>
+          Start Tone.js
+        </button>
         <div id="control-board">
           <div id="transpose-controls">
             <label htmlFor="transpose-controls">Transpose</label>
@@ -226,9 +229,6 @@ export const Piano = () => {
               </ul>
             </div>
           </div>
-          <button type="button" onClick={handleStart}>
-            Start Tone.js
-          </button>
         </div>
       </div>
       <div id="piano-keys-container">
