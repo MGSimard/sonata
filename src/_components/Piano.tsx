@@ -13,7 +13,7 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  * https://tonejs.github.io/#tonesampler
  */
 
-export const KeyTester = () => {
+export const Piano = () => {
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
@@ -136,21 +136,17 @@ export const KeyTester = () => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
     window.addEventListener("keydown", handleKeyDown, { signal });
     window.addEventListener("keyup", handleKeyUp, { signal });
     window.addEventListener("pointerup", () => (isPointerDown.current = false), { signal });
-
     return () => controller.abort();
   }, [transpose]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
     if (!keyMap[key] || pressedKeys.current.has(key)) return;
-
     pressedKeys.current.add(key);
     const [whiteNote, blackNote] = keyMap[key];
-
     const noteToPlay = e.shiftKey && blackNote ? blackNote : whiteNote;
     if (noteToPlay) addActiveNote(noteToPlay.noteIndex);
   };
@@ -158,11 +154,8 @@ export const KeyTester = () => {
   const handleKeyUp = (e: KeyboardEvent) => {
     const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
     if (!keyMap[key]) return;
-
     pressedKeys.current.delete(key);
     const [whiteNote, blackNote] = keyMap[key];
-
-    // Remove both possible notes for this key
     if (whiteNote) removeActiveNote(whiteNote.noteIndex);
     if (blackNote) removeActiveNote(blackNote.noteIndex);
   };
@@ -211,8 +204,7 @@ export const KeyTester = () => {
   };
 
   return (
-    <div>
-      KeyTester
+    <section>
       <button type="button" onClick={handleStart}>
         Start Tone.js
       </button>
@@ -279,7 +271,7 @@ export const KeyTester = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -38,7 +38,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: 1px solid red !important; */
+  border: 1px solid red !important;
 }
 html {
   font-family: var(--coreFont);
@@ -65,11 +65,35 @@ body {
 main {
   flex-grow: 1;
 }
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+#nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--displayFont);
+  font-size: 3rem;
+}
+#nav-logo img {
+  width: 4rem;
+  height: 4rem;
+}
 /* DEFAULTS */
 button {
   display: block;
   border: none;
   outline: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
 }
 button:not(:disabled) {
   cursor: pointer;
