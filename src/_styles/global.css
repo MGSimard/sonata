@@ -30,6 +30,7 @@
   --clrBgLight: oklch(86.51% 0 0);
   --clrBorder: oklch(58.77% 0 0);
   --clrPianoBg: oklch(100% 0 0);
+  --clrScroll: oklch(from var(--clrBg) calc(l - 0.05) c h);
 }
 [data-theme="dark"] {
   --clrText: white;
@@ -37,6 +38,7 @@
   --clrBgLight: oklch(22.73% 0.0081 285.53);
   --clrBorder: #3b3b3b;
   --clrPianoBg: oklch(25.18% 0.0064 34.3);
+  --clrScroll: oklch(from var(--clrBg) calc(l - 0.05) c h);
 }
 * {
   margin: 0;
@@ -89,12 +91,12 @@ nav {
   align-items: center;
   gap: 2rem;
 }
-#nav-controls button {
+#nav-controls > button {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#nav-controls button svg {
+#nav-controls > button svg {
   width: 2rem;
   height: 2rem;
 }
@@ -115,6 +117,15 @@ footer a:focus-visible {
   opacity: 1;
 }
 /* DEFAULTS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--displayFont);
+  font-weight: 500;
+}
 button {
   display: block;
   border: none;
@@ -453,4 +464,55 @@ ol {
 .key-black.playing .key-bottom {
   height: 5%;
   box-shadow: inset 0 0.55rem 0.1rem -0.5rem oklch(from var(--clrKeyBlackShine) calc(l + 0.7) c h / 0.4);
+}
+
+/* DIALOG */
+dialog {
+  margin: auto;
+  padding: 2rem;
+  width: 80rem;
+  font-family: var(--coreFont);
+  color: var(--clrText);
+  background: var(--clrBgLight);
+  border: 1px solid var(--clrBorder);
+  border-radius: 0.4rem;
+  outline: none;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clrBg) var(--clrBgLight);
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(0.5rem);
+}
+dialog[open] {
+  animation: slidefade 0.2s ease forwards;
+}
+dialog[open]::backdrop {
+  animation: fade 0.2s ease forwards;
+}
+dialog section {
+  padding: 1rem 0;
+}
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.dialog-header button svg {
+  width: 2rem;
+  height: 2rem;
+}
+dialog h3 {
+  margin-bottom: 0.5rem;
+}
+@keyframes slidefade {
+  0% {
+    transform: translateY(40%);
+    opacity: 0;
+  }
+  100% {
+    transform: unset;
+    opacity: 1;
+  }
 }
