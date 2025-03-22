@@ -82,7 +82,7 @@ nav {
 #nav-logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   font-size: 3rem;
 }
 #nav-logo img {
@@ -149,7 +149,7 @@ ol {
 #piano {
   position: relative;
   margin: 0 auto;
-  padding: var(--pianoTrimWidth) var(--pianoTrimWidth) 2rem var(--pianoTrimWidth);
+  padding: var(--pianoTrimWidth) var(--pianoTrimWidth) 1rem var(--pianoTrimWidth);
   max-width: fit-content;
   background-color: var(--clrPianoBg);
   background-image: url(/assets/noise.png);
