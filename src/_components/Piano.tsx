@@ -232,7 +232,7 @@ export const Piano = () => {
         </div>
       </div>
       <div id="piano-keys-container">
-        <div id="piano-liner"></div>
+        <div id="piano-slope"></div>
         <div id="piano-keys">
           {Object.entries(keyMap).map(([key, notes], keyIndex) => {
             const whiteNote = notes[0];

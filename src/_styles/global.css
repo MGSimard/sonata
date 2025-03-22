@@ -11,6 +11,7 @@
 
   --pianoTrimWidth: 0.5rem;
   --pianoSidePadding: 6.5rem;
+  --clrPianoShadow: oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
 
   --keyWhiteWidth: 3.5rem;
   --clrKeyWhite: oklch(96.9% 0.0053 106.5);
@@ -68,6 +69,7 @@ body {
 }
 main {
   flex-grow: 1;
+  padding: 4rem 0;
 }
 nav {
   display: flex;
@@ -145,14 +147,26 @@ ol {
 /* PIANO */
 /* Add url / assets / noise.png repeating texture on top of background color */
 #piano {
+  position: relative;
   margin: 0 auto;
-  max-width: fit-content;
   padding: var(--pianoTrimWidth) var(--pianoTrimWidth) 2rem var(--pianoTrimWidth);
+  max-width: fit-content;
   background-color: var(--clrPianoBg);
   background-image: url(/assets/noise.png);
   background-size: 96px 96px;
   background-repeat: repeat;
   border-radius: 4rem 4rem 2rem 2rem;
+}
+#piano::before {
+  position: absolute;
+  content: "";
+  inset: 0 0 -4rem 0;
+  background-color: var(--clrPianoShadow);
+  background-image: url(/assets/noise.png);
+  background-size: 96px 96px;
+  background-repeat: repeat;
+  border-radius: 4rem 4rem 2rem 2rem;
+  z-index: -1;
 }
 #soundbar {
   height: 4rem;
@@ -260,9 +274,9 @@ ol {
   vertical-align: middle;
   background-color: var(--clrPianoBg);
 }
-#piano-liner {
+#piano-slope {
   height: 2rem;
-  background: linear-gradient(to top, oklch(from var(--clrPianoBg) calc(l - 0.05) c h) 70%, transparent);
+  background: linear-gradient(to top, var(--clrPianoShadow) 70%, transparent);
 }
 #piano-keys-container {
   padding: 0 var(--pianoSidePadding);
