@@ -68,20 +68,35 @@ main {
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 2rem;
+  padding: 2rem 0;
+  font-family: var(--displayFont);
 }
 #nav-logo {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-family: var(--displayFont);
+
   font-size: 3rem;
 }
 #nav-logo img {
   width: 4rem;
   height: 4rem;
 }
+#nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
 /* DEFAULTS */
+.limited-width {
+  max-width: var(--siteMaxWidth);
+  width: 100%;
+  margin: 0 auto;
+}
 button {
   display: block;
   border: none;
@@ -117,6 +132,7 @@ ol {
 /* PIANO */
 /* Add url / assets / noise.png repeating texture on top of background color */
 #piano {
+  margin: 0 auto;
   max-width: fit-content;
   padding: var(--pianoTrimWidth) var(--pianoTrimWidth) 2rem var(--pianoTrimWidth);
   background-color: var(--clrPianoBg);

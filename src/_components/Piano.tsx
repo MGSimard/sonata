@@ -204,71 +204,69 @@ export const Piano = () => {
   };
 
   return (
-    <section>
-      <button type="button" onClick={handleStart}>
-        Start Tone.js
-      </button>
-      <div id="piano" className="noselect">
-        <div id="soundbar"></div>
-        <div id="piano-header">
-          <h1>Sonata</h1>
-          <div id="control-board">
-            <div id="transpose-controls">
-              <label htmlFor="transpose-controls">Transpose</label>
-              <div className="transpose-control">
-                <button id="transpose-minus" type="button" onClick={() => adjustTranspose(-1)}></button>
-              </div>
-              <div className="transpose-control">
-                <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
-              </div>
+    <section id="piano" className="noselect">
+      <div id="soundbar"></div>
+      <div id="piano-header">
+        <h1>Sonata</h1>
+        <div id="control-board">
+          <div id="transpose-controls">
+            <label htmlFor="transpose-controls">Transpose</label>
+            <div className="transpose-control">
+              <button id="transpose-minus" type="button" onClick={() => adjustTranspose(-1)}></button>
             </div>
-            <div id="display">
-              <div id="screen">
-                <ul>
-                  <li>- Volume: N/A</li>
-                  <li>- Transpose: {transpose}</li>
-                </ul>
-              </div>
+            <div className="transpose-control">
+              <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
             </div>
           </div>
+          <div id="display">
+            <div id="screen">
+              <ul>
+                <li>- Volume: N/A</li>
+                <li>- Transpose: {transpose}</li>
+              </ul>
+            </div>
+          </div>
+          <button type="button" onClick={handleStart}>
+            Start Tone.js
+          </button>
         </div>
-        <div id="piano-keys-container">
-          <div id="piano-liner"></div>
-          <div id="piano-keys">
-            {Object.entries(keyMap).map(([key, notes], keyIndex) => {
-              const whiteNote = notes[0];
-              const blackNote = notes[1];
+      </div>
+      <div id="piano-keys-container">
+        <div id="piano-liner"></div>
+        <div id="piano-keys">
+          {Object.entries(keyMap).map(([key, notes], keyIndex) => {
+            const whiteNote = notes[0];
+            const blackNote = notes[1];
 
-              return (
-                <Fragment key={key}>
-                  {whiteNote && (
-                    <PianoKey
-                      note={whiteNote}
-                      isWhite={true}
-                      index={keyIndex}
-                      isPlaying={activeNotes.has(whiteNote.noteIndex)}
-                      onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
-                      onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
-                      onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
-                      onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
-                    />
-                  )}
-                  {blackNote && (
-                    <PianoKey
-                      note={blackNote}
-                      isWhite={false}
-                      index={keyIndex}
-                      isPlaying={activeNotes.has(blackNote.noteIndex)}
-                      onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
-                      onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
-                      onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
-                      onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
-                    />
-                  )}
-                </Fragment>
-              );
-            })}
-          </div>
+            return (
+              <Fragment key={key}>
+                {whiteNote && (
+                  <PianoKey
+                    note={whiteNote}
+                    isWhite={true}
+                    index={keyIndex}
+                    isPlaying={activeNotes.has(whiteNote.noteIndex)}
+                    onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
+                    onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
+                    onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
+                    onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
+                  />
+                )}
+                {blackNote && (
+                  <PianoKey
+                    note={blackNote}
+                    isWhite={false}
+                    index={keyIndex}
+                    isPlaying={activeNotes.has(blackNote.noteIndex)}
+                    onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
+                    onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
+                    onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
+                    onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
+                  />
+                )}
+              </Fragment>
+            );
+          })}
         </div>
       </div>
     </section>
