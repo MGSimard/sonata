@@ -31,9 +31,9 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] (p key and wetness of this library are especially bad)
 - [ ] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)
 - [ ] ...
-- [ ] Establish application identity
+- [x] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
-- [ ] Adjust theme data in index and manifest
+- [x] Adjust theme data in index and manifest
 - [ ] ...
 - [ ] Core Piano functions
 - [ ] Sustain (On/Off/Hold)
@@ -46,9 +46,9 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] Sheet music popout (Forced on-top)
 - [ ] Switch white key layout around so you don't get keyspam on leftclick near clip-path on animation
 - [ ] ...
-- [ ] Metadata assets
-- [ ] Finalize index.html metadata
-- [ ] Deploy
+- [x] Metadata assets
+- [x] Finalize index.html metadata
+- [x] Deploy
 
 ## Future Considerations
 
