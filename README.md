@@ -31,7 +31,7 @@
 - [ ] ...
 - [ ] Establish application identity
 - [ ] Color palette (Both Light & Dark Modes)
-- [ ] Grain texture on piano casing
+- [ ] Adjust theme data in index and manifest
 - [ ] ...
 - [ ] Core Piano functions
 - [ ] Sustain (On/Off/Hold)

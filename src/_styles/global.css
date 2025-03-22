@@ -10,8 +10,8 @@
   --clrPrimary: oklch(61.84% 0.2473 24.65 / 94.84%);
   --clrSecondary: #000;
   --clrText: white;
-  --clrBg: #000000;
-  --clrBgLight: #eeeeee;
+  --clrBg: oklch(17.44% 0.0081 285.53);
+  --clrBgLight: oklch(22.73% 0.0081 285.53);
   --clrBorder: #3b3b3b;
 
   --pianoTrimWidth: 0.5rem;

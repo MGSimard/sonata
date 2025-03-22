@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46667 135.46667"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1"><linearGradient
+       id="linearGradient20"><stop
+         style="stop-color:#b07a32;stop-opacity:1;"
+         offset="0"
+         id="stop21" /><stop
+         style="stop-color:#f8eb83;stop-opacity:1;"
+         offset="0.5"
+         id="stop23" /><stop
+         style="stop-color:#b07a32;stop-opacity:1;"
+         offset="1"
+         id="stop22" /></linearGradient><linearGradient
+       xlink:href="#linearGradient20"
+       id="linearGradient22"
+       x1="15.89677"
+       y1="14.402917"
+       x2="120.33076"
+       y2="120.36263"
+       gradientUnits="userSpaceOnUse" /></defs><g
+     id="layer1"><path
+       d="M 24.201107,5.0276002 C 13.64897,5.0275999 5.0275999,13.64897 5.0276002,24.201107 V 111.2635 c 0,10.55213 8.6213698,19.17609 19.1735068,19.17609 H 111.2635 c 10.55213,0 19.17609,-8.62396 19.17609,-19.17609 V 24.201107 c 0,-10.552137 -8.62396,-19.1735068 -19.17609,-19.1735068 z m 0,6.3494838 H 34.660418 V 79.06236 c 1.68e-4,2.761293 2.238918,4.999811 5.000211,4.999694 h 5.053955 V 124.08959 H 24.201107 c -7.120445,0 -12.824023,-5.70565 -12.824023,-12.82609 V 24.201107 c 0,-7.120445 5.703578,-12.824023 12.824023,-12.824023 z m 36.917645,0 H 74.347918 V 79.06236 c 1.69e-4,2.761337 2.238875,4.999811 5.000212,4.999694 h 5.053955 v 40.027536 h -33.3375 V 84.062054 h 5.053955 c 2.761288,1.17e-4 5.000043,-2.238407 5.000212,-4.999694 z m 39.687498,0 h 10.45725 c 7.12044,0 12.82609,5.703578 12.82609,12.824023 V 111.2635 c 0,7.12044 -5.70565,12.82609 -12.82609,12.82609 H 90.752086 V 84.062054 h 5.053955 c 2.761343,1.17e-4 5.000039,-2.238351 5.000209,-4.999694 z"
+       style="fill:url(#linearGradient22);stroke-width:6.44484;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       id="path10" /></g></svg>
