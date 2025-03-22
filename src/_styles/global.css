@@ -1,5 +1,5 @@
 :root {
-  --siteMaxWidth: 1400px;
+  --siteMaxWidth: 1400px; /* Might not use this to allow ultrawide users to zoom piano as much as they want*/
   --sitePadding: 2rem;
 
   --coreFont: "Satoshi", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica,
