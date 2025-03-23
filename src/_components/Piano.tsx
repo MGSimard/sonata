@@ -14,6 +14,7 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  */
 
 export const Piano = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
@@ -113,6 +114,7 @@ export const Piano = () => {
       release: 1,
       volume: -7,
       attack: 0,
+      onload: () => setIsLoaded(true),
     }).toDestination()
   );
 
@@ -172,7 +174,6 @@ export const Piano = () => {
     return noteName;
   };
 
-  // Unified pointer event handlers
   const handlePointerDown = (noteIndex: NoteIndex) => {
     isPointerDown.current = true;
     pointerPressedNotes.current.add(noteIndex);
@@ -215,10 +216,20 @@ export const Piano = () => {
           <div id="transpose-controls">
             <label htmlFor="transpose-controls">Transpose</label>
             <div className="transpose-control">
-              <button id="transpose-minus" type="button" onClick={() => adjustTranspose(-1)}></button>
+              <button
+                id="transpose-minus"
+                type="button"
+                onClick={() => adjustTranspose(-1)}
+                aria-label="Decrease"
+                title="Decrease"></button>
             </div>
             <div className="transpose-control">
-              <button id="transpose-plus" type="button" onClick={() => adjustTranspose(1)}></button>
+              <button
+                id="transpose-plus"
+                type="button"
+                onClick={() => adjustTranspose(1)}
+                aria-label="Increase"
+                title="Increase"></button>
             </div>
           </div>
           <div id="display">
