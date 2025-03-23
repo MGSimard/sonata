@@ -13,6 +13,7 @@
   --pianoTrimWidth: 0.5rem;
   --pianoSidePadding: 6.5rem;
   --clrPianoShadow: oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
+  --clrFelt: oklch(64.91% 0.226964 22.09);
 
   --keyWhiteWidth: 3.5rem;
   --clrKeyWhite: oklch(96.9% 0.0053 106.5);
@@ -405,7 +406,7 @@ summary {
   height: calc(var(--keyWhiteWidth) * 6);
   color: oklch(from var(--clrKeyWhite) calc(l - 0.2) c h);
   background-color: var(--clrKeyWhiteShadow);
-  border-top: calc(var(--keyWhiteWidth) * 0.1) solid var(--clrPrimary);
+  border-top: 0.3rem solid var(--clrFelt);
   border-right: 1px solid var(--clrKeyWhiteBorder);
   border-left: 1px solid var(--clrKeyWhiteBorder);
   transition: clip-path 0.05s ease-in;
