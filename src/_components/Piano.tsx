@@ -19,9 +19,10 @@ export const Piano = () => {
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
+  const sampler = useRef<Tone.Sampler>(null);
 
-  const sampler = useRef<Tone.Sampler>(
-    new Tone.Sampler({
+  useEffect(() => {
+    sampler.current = new Tone.Sampler({
       urls: fileMap,
       baseUrl: "/assets/notes/",
       release: 1,
@@ -33,8 +34,15 @@ export const Piano = () => {
       onerror: (error) => {
         console.error("Error loading sampler", error);
       },
-    }).toDestination()
-  );
+    }).toDestination();
+
+    return () => {
+      if (sampler.current) {
+        sampler.current.dispose();
+        sampler.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
