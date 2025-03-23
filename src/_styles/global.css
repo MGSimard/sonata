@@ -7,7 +7,7 @@
   --displayFont: "Boska", "Times New Roman", Georgia, Garamond, Times, serif;
   --monoFont: "JetBrains Mono", Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
-  --clrPrimary: oklch(61.84% 0.2473 24.65);
+  --clrPrimary: oklch(100% 0 0);
   --clrDetail: oklch(41.23% 0 0);
 
   --pianoTrimWidth: 0.5rem;
@@ -241,6 +241,7 @@ summary {
   background-repeat: repeat;
   border-radius: 4rem 4rem 2rem 2rem;
   z-index: -1;
+  box-shadow: 0 2rem 2rem -1rem rgba(0, 0, 0, 0.2);
 }
 #soundbar {
   height: 4rem;
@@ -290,8 +291,8 @@ summary {
   text-align: start;
   color: white;
   text-shadow: 0 0 0.5rem white;
-  background-color: oklch(from var(--clrPrimary) 0.3 0.1 h);
-  box-shadow: inset 0 0 2rem oklch(from var(--clrPrimary) 1 c h / 0.3);
+  background-color: oklch(from var(--clrPrimary) 0.7 c h);
+  box-shadow: inset 0 0 2rem oklch(from var(--clrPrimary) 1 c h / 0.6);
   overflow: hidden;
 }
 #transpose-controls {

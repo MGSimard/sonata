@@ -31,9 +31,7 @@ export const Piano = () => {
     sampler.current = new Tone.Sampler({
       urls: fileMap,
       baseUrl: "/assets/notes/",
-      release: 1,
       volume: -7,
-      attack: 0,
       onload: () => {
         setIsLoaded(true);
       },
