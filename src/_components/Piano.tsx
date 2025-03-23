@@ -14,12 +14,11 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  */
 
 export const Piano = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); // Handles state of sampler
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
-  const isPointerDown = useRef<boolean>(false);
 
   const sampler = useRef<Tone.Sampler>(
     new Tone.Sampler({
@@ -42,7 +41,6 @@ export const Piano = () => {
     const signal = controller.signal;
     window.addEventListener("keydown", handleKeyDown, { signal });
     window.addEventListener("keyup", handleKeyUp, { signal });
-    window.addEventListener("pointerup", () => (isPointerDown.current = false), { signal });
 
     return () => controller.abort();
   }, [transpose, isLoaded]);
@@ -98,19 +96,18 @@ export const Piano = () => {
   };
 
   const handlePointerDown = (noteIndex: NoteIndex) => {
-    isPointerDown.current = true;
     pointerPressedNotes.current.add(noteIndex);
     addActiveNote(noteIndex);
   };
 
   const handlePointerUp = (noteIndex: NoteIndex) => {
-    isPointerDown.current = false;
     pointerPressedNotes.current.delete(noteIndex);
     removeActiveNote(noteIndex);
   };
 
-  const handlePointerEnter = (noteIndex: NoteIndex) => {
-    if (isPointerDown.current) {
+  const handlePointerEnter = (e: React.PointerEvent, noteIndex: NoteIndex) => {
+    if (e.buttons & 1) {
+      // Check if primary button is pressed
       pointerPressedNotes.current.add(noteIndex);
       addActiveNote(noteIndex);
     }
@@ -187,7 +184,7 @@ export const Piano = () => {
                     isPlaying={activeNotes.has(whiteNote.noteIndex)}
                     onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
                     onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
-                    onPointerEnter={() => handlePointerEnter(whiteNote.noteIndex)}
+                    onPointerEnter={(e) => handlePointerEnter(e, whiteNote.noteIndex)}
                     onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
                   />
                 )}
@@ -199,7 +196,7 @@ export const Piano = () => {
                     isPlaying={activeNotes.has(blackNote.noteIndex)}
                     onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
                     onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
-                    onPointerEnter={() => handlePointerEnter(blackNote.noteIndex)}
+                    onPointerEnter={(e) => handlePointerEnter(e, blackNote.noteIndex)}
                     onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
                   />
                 )}
@@ -228,7 +225,7 @@ function PianoKey({
   isPlaying: boolean;
   onPointerDown: () => void;
   onPointerUp: () => void;
-  onPointerEnter: () => void;
+  onPointerEnter: (e: React.PointerEvent) => void;
   onPointerLeave: () => void;
 }) {
   const isLastKey = isWhite && note.noteIndex === 72;
