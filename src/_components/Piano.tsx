@@ -14,7 +14,6 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  */
 
 export const Piano = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
@@ -147,14 +146,10 @@ export const Piano = () => {
           </div>
           <div id="display">
             <div id="screen">
-              {isLoaded ? (
-                <ul>
-                  <li>- Volume: N/A</li>
-                  <li>- Transpose: {transpose}</li>
-                </ul>
-              ) : (
-                <p>Loading...</p>
-              )}
+              <ul>
+                <li>- Volume: N/A</li>
+                <li>- Transpose: {transpose}</li>
+              </ul>
             </div>
           </div>
         </div>
