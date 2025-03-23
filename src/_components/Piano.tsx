@@ -14,6 +14,7 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  */
 
 export const Piano = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [transpose, setTranspose] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
@@ -27,11 +28,38 @@ export const Piano = () => {
       release: 1,
       volume: -7,
       attack: 0,
+      onload: () => {
+        setIsLoaded(true);
+      },
+      onerror: (error) => {
+        console.error("Error loading sampler", error);
+      },
     }).toDestination()
   );
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    window.addEventListener("keydown", handleKeyDown, { signal });
+    window.addEventListener("keyup", handleKeyUp, { signal });
+    window.addEventListener("pointerup", () => (isPointerDown.current = false), { signal });
+
+    return () => controller.abort();
+  }, [transpose, isLoaded]);
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
+    if (!keyMap[key] || pressedKeys.current.has(key)) return;
+    pressedKeys.current.add(key);
+    const [whiteNote, blackNote] = keyMap[key];
+    const noteToPlay = e.shiftKey && blackNote ? blackNote : whiteNote;
+    if (noteToPlay) addActiveNote(noteToPlay.noteIndex);
+  };
+
   const addActiveNote = (noteIndex: NoteIndex) => {
-    playNote(noteIndex);
+    if (isLoaded) {
+      playNote(noteIndex);
+    }
     setActiveNotes((prev) => {
       const updated = new Set(prev);
       updated.add(noteIndex);
@@ -47,24 +75,6 @@ export const Piano = () => {
     });
   };
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    window.addEventListener("keydown", handleKeyDown, { signal });
-    window.addEventListener("keyup", handleKeyUp, { signal });
-    window.addEventListener("pointerup", () => (isPointerDown.current = false), { signal });
-    return () => controller.abort();
-  }, [transpose]);
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
-    if (!keyMap[key] || pressedKeys.current.has(key)) return;
-    pressedKeys.current.add(key);
-    const [whiteNote, blackNote] = keyMap[key];
-    const noteToPlay = e.shiftKey && blackNote ? blackNote : whiteNote;
-    if (noteToPlay) addActiveNote(noteToPlay.noteIndex);
-  };
-
   const handleKeyUp = (e: KeyboardEvent) => {
     const key = e.code.startsWith("Digit") ? e.code : e.key.toLowerCase();
     if (!keyMap[key]) return;
@@ -75,12 +85,13 @@ export const Piano = () => {
   };
 
   const handleStart = async () => {
+    if (!isLoaded) return;
     await Tone.start();
     console.log("Tone.started");
   };
 
   const playNote = (noteIndex: NoteIndex) => {
-    console.log("playNote", noteIndex);
+    if (!sampler.current) return;
     const noteName = getNoteName(noteIndex, transpose);
     sampler.current.triggerAttack(noteName);
     return noteName;
@@ -113,6 +124,7 @@ export const Piano = () => {
   };
 
   const adjustTranspose = (amount: number) => {
+    if (!isLoaded) return;
     setTranspose((prev) => Math.max(-12, Math.min(12, prev + amount)));
   };
 
@@ -146,10 +158,14 @@ export const Piano = () => {
           </div>
           <div id="display">
             <div id="screen">
-              <ul>
-                <li>- Volume: N/A</li>
-                <li>- Transpose: {transpose}</li>
-              </ul>
+              {isLoaded ? (
+                <ul>
+                  <li>- Volume: N/A</li>
+                  <li>- Transpose: {transpose}</li>
+                </ul>
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
           </div>
         </div>
