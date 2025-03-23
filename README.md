@@ -34,7 +34,7 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] But other apps using Tonejs have much more volume, so need to do some research on this issue.
 - [ ] ...
 - [x] Establish application identity
-- [ ] Color palette (Both Light & Dark Modes)
+- [x] Color palette (Both Light & Dark Modes)
 - [x] Adjust theme data in index and manifest
 - [ ] ...
 - [x] Core Piano functions

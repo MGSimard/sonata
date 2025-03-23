@@ -362,12 +362,14 @@ summary {
   vertical-align: middle;
   background-color: var(--clrPianoBg);
 }
-#piano-slope {
-  height: 2rem;
-  background: linear-gradient(to top, var(--clrPianoShadow) 70%, transparent);
-}
 #piano-keys-container {
   padding: 0 var(--pianoSidePadding);
+}
+#piano-keys-container::before {
+  display: block;
+  content: "";
+  height: 2rem;
+  background: linear-gradient(to top, var(--clrPianoShadow) 70%, transparent);
 }
 #piano-keys {
   position: relative;

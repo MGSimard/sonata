@@ -16,10 +16,16 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
 export const Piano = () => {
   const [isLoaded, setIsLoaded] = useState(false); // Handles state of sampler
   const [transpose, setTranspose] = useState(0);
+  const [volume, setVolume] = useState(0);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
   const sampler = useRef<Tone.Sampler>(null);
+
+  // useEffect(() => {
+  //   if (!sampler.current || !isLoaded) return;
+  //   sampler.current.volume.value = volume;
+  // }, [volume, setVolume, isLoaded, sampler]);
 
   useEffect(() => {
     sampler.current = new Tone.Sampler({
@@ -49,7 +55,6 @@ export const Piano = () => {
     const signal = controller.signal;
     window.addEventListener("keydown", handleKeyDown, { signal });
     window.addEventListener("keyup", handleKeyUp, { signal });
-
     return () => controller.abort();
   }, [transpose, isLoaded]);
 
@@ -176,7 +181,6 @@ export const Piano = () => {
       </div>
 
       <div id="piano-keys-container">
-        <div id="piano-slope"></div>
         <div id="piano-keys">
           {Object.entries(keyMap).map(([key, notes], keyIndex) => {
             const whiteNote = notes[0];
