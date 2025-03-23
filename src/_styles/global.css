@@ -374,7 +374,7 @@ summary {
   display: flex;
   background-color: var(--keyBlackShine);
   overflow-x: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: thick;
   scrollbar-color: var(--clrPianoBg) oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
 }
 .key {
