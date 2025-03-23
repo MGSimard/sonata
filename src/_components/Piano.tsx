@@ -107,7 +107,6 @@ export const Piano = () => {
 
   const handlePointerEnter = (e: React.PointerEvent, noteIndex: NoteIndex) => {
     if (e.buttons & 1) {
-      // Check if primary button is pressed
       pointerPressedNotes.current.add(noteIndex);
       addActiveNote(noteIndex);
     }
