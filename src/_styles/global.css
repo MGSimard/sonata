@@ -234,7 +234,7 @@ summary {
 #piano::before {
   position: absolute;
   content: "";
-  inset: 0 0 -4rem 0;
+  inset: 0 0 -3rem 0;
   background-color: var(--clrPianoShadow);
   background-image: url(/assets/noise.png);
   background-size: 96px 96px;
