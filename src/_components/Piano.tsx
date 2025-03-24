@@ -217,7 +217,7 @@ export const Piano = () => {
             <div id="screen">
               {isLoaded ? (
                 <ul>
-                  <li>- Volume: {volume}</li>
+                  <li>- Volume: {volume}dB</li>
                   <li>- Transpose: {transpose}</li>
                 </ul>
               ) : (
@@ -275,7 +275,7 @@ export const Piano = () => {
               aria-valuemin={VOLUME_MIN}
               aria-valuemax={VOLUME_MAX}
               aria-valuenow={volume}
-              aria-valuetext={`Volume: ${volume}`}
+              aria-valuetext={`Volume: ${volume}dB`}
               data-dragging={isDragging}
               onPointerDown={handleVolumePointerDown}
               onPointerMove={handleVolumePointerMove}
