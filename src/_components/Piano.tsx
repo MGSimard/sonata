@@ -13,25 +13,32 @@ import { getWhiteKeyShape } from "@/_utils/helpers";
  * https://tonejs.github.io/#tonesampler
  */
 
+const INITIAL_VOLUME = -7;
+const VOLUME_MIN = -15;
+const VOLUME_MAX = -4;
+const VOLUME_RANGE = VOLUME_MAX - VOLUME_MIN;
+const VOLUME_STEPS = VOLUME_RANGE + 1; // 7 steps (-10 to -4)
+
 export const Piano = () => {
   const [isLoaded, setIsLoaded] = useState(false); // Handles state of sampler
   const [transpose, setTranspose] = useState(0);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(INITIAL_VOLUME);
+  const [isDragging, setIsDragging] = useState(false);
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
   const sampler = useRef<Tone.Sampler>(null);
 
-  // useEffect(() => {
-  //   if (!sampler.current || !isLoaded) return;
-  //   sampler.current.volume.value = volume;
-  // }, [volume, setVolume, isLoaded, sampler]);
+  useEffect(() => {
+    if (!sampler.current || !isLoaded) return;
+    sampler.current.volume.value = volume;
+  }, [volume, setVolume, isLoaded, sampler]);
 
   useEffect(() => {
     sampler.current = new Tone.Sampler({
       urls: fileMap,
       baseUrl: "/assets/notes/",
-      volume: -7,
+      volume: -4,
       onload: () => {
         setIsLoaded(true);
       },
@@ -135,6 +142,49 @@ export const Piano = () => {
     setTranspose((prev) => Math.max(-12, Math.min(12, prev + amount)));
   };
 
+  const calculateVolumeFromPosition = (position: number): number => {
+    const clampedPosition = Math.max(0, Math.min(1, position));
+    // Convert position to step index (0-6)
+    const stepIndex = Math.round(clampedPosition * (VOLUME_STEPS - 1));
+    // Convert step index back to volume value
+    return VOLUME_MIN + stepIndex;
+  };
+
+  const getPositionFromEvent = (e: React.PointerEvent<HTMLDivElement>): number => {
+    const track = e.currentTarget;
+    const rect = track.getBoundingClientRect();
+    // Calculate position from bottom (1) to top (0)
+    return 1 - (e.clientY - rect.top) / rect.height;
+  };
+
+  const handleVolumePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const track = e.currentTarget;
+    track.setPointerCapture(e.pointerId);
+    setIsDragging(true);
+    const position = getPositionFromEvent(e);
+    setVolume(calculateVolumeFromPosition(position));
+  };
+
+  const handleThumbPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const thumb = e.currentTarget;
+    thumb.setPointerCapture(e.pointerId);
+    setIsDragging(true);
+  };
+
+  const handleVolumePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const position = getPositionFromEvent(e);
+    setVolume(calculateVolumeFromPosition(position));
+  };
+
+  const handleVolumePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    if (!target || !isDragging) return;
+    target.releasePointerCapture(e.pointerId);
+    setIsDragging(false);
+  };
+
   return (
     <section id="piano" className="noselect">
       <div id="soundbar"></div>
@@ -167,7 +217,7 @@ export const Piano = () => {
             <div id="screen">
               {isLoaded ? (
                 <ul>
-                  <li>- Volume: N/A</li>
+                  <li>- Volume: {volume}</li>
                   <li>- Transpose: {transpose}</li>
                 </ul>
               ) : (
@@ -177,41 +227,74 @@ export const Piano = () => {
           </div>
         </div>
       </div>
-
-      <div id="piano-keys-container">
-        <div id="piano-keys">
-          {Object.entries(keyMap).map(([key, notes], keyIndex) => {
-            const whiteNote = notes[0];
-            const blackNote = notes[1];
-            return (
-              <Fragment key={key}>
-                {whiteNote && (
-                  <PianoKey
-                    note={whiteNote}
-                    isWhite={true}
-                    index={keyIndex}
-                    isPlaying={activeNotes.has(whiteNote.noteIndex)}
-                    onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
-                    onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
-                    onPointerEnter={(e) => handlePointerEnter(e, whiteNote.noteIndex)}
-                    onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
-                  />
-                )}
-                {blackNote && (
-                  <PianoKey
-                    note={blackNote}
-                    isWhite={false}
-                    index={keyIndex}
-                    isPlaying={activeNotes.has(blackNote.noteIndex)}
-                    onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
-                    onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
-                    onPointerEnter={(e) => handlePointerEnter(e, blackNote.noteIndex)}
-                    onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
-                  />
-                )}
-              </Fragment>
-            );
-          })}
+      <div id="piano-bottom">
+        <div className="piano-side"></div>
+        <div id="piano-keys-container">
+          <div id="piano-keys">
+            {Object.entries(keyMap).map(([key, notes], keyIndex) => {
+              const whiteNote = notes[0];
+              const blackNote = notes[1];
+              return (
+                <Fragment key={key}>
+                  {whiteNote && (
+                    <PianoKey
+                      note={whiteNote}
+                      isWhite={true}
+                      index={keyIndex}
+                      isPlaying={activeNotes.has(whiteNote.noteIndex)}
+                      onPointerDown={() => handlePointerDown(whiteNote.noteIndex)}
+                      onPointerUp={() => handlePointerUp(whiteNote.noteIndex)}
+                      onPointerEnter={(e) => handlePointerEnter(e, whiteNote.noteIndex)}
+                      onPointerLeave={() => handlePointerLeave(whiteNote.noteIndex)}
+                    />
+                  )}
+                  {blackNote && (
+                    <PianoKey
+                      note={blackNote}
+                      isWhite={false}
+                      index={keyIndex}
+                      isPlaying={activeNotes.has(blackNote.noteIndex)}
+                      onPointerDown={() => handlePointerDown(blackNote.noteIndex)}
+                      onPointerUp={() => handlePointerUp(blackNote.noteIndex)}
+                      onPointerEnter={(e) => handlePointerEnter(e, blackNote.noteIndex)}
+                      onPointerLeave={() => handlePointerLeave(blackNote.noteIndex)}
+                    />
+                  )}
+                </Fragment>
+              );
+            })}
+          </div>
+        </div>
+        <div className="piano-side">
+          <label id="volume-label" htmlFor="volume-track">
+            Volume
+            <div
+              id="volume-track"
+              role="slider"
+              aria-label="Volume"
+              aria-valuemin={VOLUME_MIN}
+              aria-valuemax={VOLUME_MAX}
+              aria-valuenow={volume}
+              aria-valuetext={`Volume: ${volume}`}
+              data-dragging={isDragging}
+              onPointerDown={handleVolumePointerDown}
+              onPointerMove={handleVolumePointerMove}
+              onPointerUp={handleVolumePointerUp}
+              onPointerCancel={handleVolumePointerUp}>
+              <div
+                id="volume-thumb"
+                onPointerDown={handleThumbPointerDown}
+                onPointerMove={handleVolumePointerMove}
+                onPointerUp={handleVolumePointerUp}
+                onPointerCancel={handleVolumePointerUp}
+                style={{
+                  // 70 is hardcoded track height - thumb height
+                  bottom: `${((volume - VOLUME_MIN) / (VOLUME_STEPS - 1)) * 70}%`,
+                }}
+              />
+            </div>
+          </label>
+          <span>SNT-225</span>
         </div>
       </div>
     </section>
