@@ -29,9 +29,10 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] Dump unused font weights
 - [ ] Get a better sample library (currently using exported custom from fl studio)
 - [ ] (p key and wetness of this library are especially bad)
-- [ ] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)
-- [ ] Not browser, not files (tested vp files), looks like volume related or buffer overflow.
-- [ ] But other apps using Tonejs have much more volume, so need to do some research on this issue.
+- [x] Find out how to prevent audio overflows causing noise and crackling (Issue was volume?)
+- [x] Not browser, not files (tested vp files), looks like volume related or buffer overflow.
+- [x] But other apps using Tonejs have much more volume, so need to do some research on this issue.
+- [ ] Solved
 - [ ] ...
 - [x] Establish application identity
 - [x] Color palette (Both Light & Dark Modes)
@@ -41,7 +42,7 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] Sustain (On/Off/Hold)
 - [ ] Note history
 - [ ] Metronome
-- [ ] Volume control
+- [x] Volume control
 - [x] Note transposition setting (-12, +12)
 - [ ] Slight black key offsets (towards edges, center black key center)
 - [ ] ...
@@ -56,8 +57,6 @@ Sonata — a simple, elegant, and accessible piano app.
 
 ## Future Considerations
 
-- [ ] Metronome
-- [ ] Establish sheet music conventions
-- [ ] Adding sheet music (Author, title, tempo, core genre)
+- [ ] Adding sheet music (Author, title, tempo, core genre) (Would require fullstack)
 - [ ] MIDI Support
 - [ ] Customizable themes
