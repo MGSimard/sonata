@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState, useRef } from "react";
 import * as Tone from "tone";
 import { fileMap, getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
 import { getWhiteKeyShape } from "@/_utils/helpers";
+import { IconTranspose, IconVolume } from "./Icons";
 
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
@@ -190,9 +191,6 @@ export const Piano = () => {
       <div id="soundbar"></div>
       <div id="piano-header">
         <h1>Sonata</h1>
-        <button type="button" onClick={handleStart}>
-          Start Tone.js
-        </button>
         <div id="control-board">
           <div id="transpose-controls">
             <label htmlFor="transpose-controls">Transpose</label>
@@ -216,10 +214,19 @@ export const Piano = () => {
           <div id="display">
             <div id="screen">
               {isLoaded ? (
-                <ul>
-                  <li>- Volume: {volume}dB</li>
-                  <li>- Transpose: {transpose}</li>
-                </ul>
+                <>
+                  <div id="screen-content"></div>
+                  <div id="screen-settings">
+                    <div className="setting" aria-label="Current volume" title="Current volume">
+                      <IconVolume />
+                      <span>{volume}dB</span>
+                    </div>
+                    <div className="setting" aria-label="Current transposition" title="Current transposition">
+                      <IconTranspose />
+                      <span>{transpose}</span>
+                    </div>
+                  </div>
+                </>
               ) : (
                 <p>Loading...</p>
               )}
@@ -266,6 +273,9 @@ export const Piano = () => {
           </div>
         </div>
         <div className="piano-side">
+          <button type="button" onClick={handleStart}>
+            Start Tone.js
+          </button>
           <label id="volume-label" htmlFor="volume-track">
             Volume
             <div

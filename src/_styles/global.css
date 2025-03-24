@@ -313,7 +313,7 @@ summary {
 .transpose-control {
   --buttonGlow: #111;
   --buttonDark: #111;
-  --glow: oklch(from var(--clrPrimary) 1 0.1 h);
+  --glow: oklch(from var(--clrPrimary) 1 c h);
   --darker: oklch(from var(--clrPrimary) 0.3 c h);
   position: relative;
   width: 4rem;
@@ -350,10 +350,15 @@ summary {
   background-color: #111;
   border-radius: 0.4rem;
 }
+#display svg {
+  width: 1.2em;
+  height: 1.2em;
+}
 #screen {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
   width: 20ch;
   height: 10ch;
   padding: 1ch;
@@ -364,6 +369,18 @@ summary {
   box-shadow: inset 0 0 2rem oklch(from var(--clrPrimary) 1 c h / 0.6);
   overflow: hidden;
 }
+#screen-settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 #piano-bottom {
   display: flex;
 }
