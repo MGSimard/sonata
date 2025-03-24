@@ -33,6 +33,7 @@ Sonata — a simple, elegant, and accessible piano app.
 - [x] Not browser, not files (tested vp files), looks like volume related or buffer overflow.
 - [x] But other apps using Tonejs have much more volume, so need to do some research on this issue.
 - [ ] Solved
+- [ ] Also, after finishing tests with new library downsize file usage to every ~2-4 notes alternated.
 - [ ] ...
 - [x] Establish application identity
 - [x] Color palette (Both Light & Dark Modes)
