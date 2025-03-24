@@ -46,6 +46,7 @@ Sonata — a simple, elegant, and accessible piano app.
 - [x] Volume control
 - [x] Note transposition setting (-12, +12)
 - [ ] Slight black key offsets (towards edges, center black key center)
+- [ ] Narrow down specific touch-action removal pieces
 - [ ] ...
 - [ ] Piano popout?
 - [ ] Sheet music popout (Forced on-top)
