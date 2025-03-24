@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState, useRef } from "react";
 import * as Tone from "tone";
 import { fileMap, getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
 import { getWhiteKeyShape } from "@/_utils/helpers";
-import { IconTranspose, IconVolume } from "./Icons";
+import { IconTranspose, IconVolume } from "@/_components/Icons";
 
 /* THIS MIGHT BE HUGE FOR PERFORMANCE/MEMORY/DATA USAGE
  * "Multiple samples can also be combined into an instrument.
@@ -18,10 +18,10 @@ const INITIAL_VOLUME = -7;
 const VOLUME_MIN = -15;
 const VOLUME_MAX = -4;
 const VOLUME_RANGE = VOLUME_MAX - VOLUME_MIN;
-const VOLUME_STEPS = VOLUME_RANGE + 1; // 7 steps (-10 to -4)
+const VOLUME_STEPS = VOLUME_RANGE + 1;
 
 export const Piano = () => {
-  const [isLoaded, setIsLoaded] = useState(false); // Handles state of sampler
+  const [isLoaded, setIsLoaded] = useState(false);
   const [transpose, setTranspose] = useState(0);
   const [volume, setVolume] = useState(INITIAL_VOLUME);
   const [isDragging, setIsDragging] = useState(false);
@@ -145,16 +145,13 @@ export const Piano = () => {
 
   const calculateVolumeFromPosition = (position: number): number => {
     const clampedPosition = Math.max(0, Math.min(1, position));
-    // Convert position to step index (0-6)
     const stepIndex = Math.round(clampedPosition * (VOLUME_STEPS - 1));
-    // Convert step index back to volume value
     return VOLUME_MIN + stepIndex;
   };
 
   const getPositionFromEvent = (e: React.PointerEvent<HTMLDivElement>): number => {
     const track = e.currentTarget;
     const rect = track.getBoundingClientRect();
-    // Calculate position from bottom (1) to top (0)
     return 1 - (e.clientY - rect.top) / rect.height;
   };
 
