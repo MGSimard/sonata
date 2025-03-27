@@ -356,15 +356,25 @@ summary {
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  padding: 1ch;
   width: 20ch;
   height: 10ch;
-  padding: 1ch;
   text-align: start;
   color: white;
   text-shadow: 0 0 0.5rem white;
   background-color: oklch(from var(--clrPrimary) 0.7 c h);
   box-shadow: inset 0 0 2rem oklch(from var(--clrPrimary) 1 c h / 0.6);
   overflow: hidden;
+}
+#screen-content {
+  display: flex;
+  flex-direction: column-reverse;
+  white-space: wrap;
+  word-break: break-all;
+  overflow: hidden auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clrPrimary) transparent;
+  overflow-anchor: none;
 }
 #screen-settings {
   display: flex;

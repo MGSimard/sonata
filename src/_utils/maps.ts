@@ -95,6 +95,12 @@ export function getNoteName(noteIndex: NoteIndex, transpose = 0): string {
   return noteIndexToNote[boundIndex] ?? "C2"; // Nullish should never happen but w/e
 }
 
+export function getNoteChar(noteIndex: NoteIndex): string | undefined {
+  return Object.values(keyMap)
+    .flat()
+    .find((note) => note.noteIndex === noteIndex)?.char;
+}
+
 /* WHY A HYBRID e.code + e.key METHOD
  * - e.code maps to physical key position.
  * - e.key maps to digital key output.

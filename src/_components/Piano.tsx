@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState, useRef } from "react";
 import * as Tone from "tone";
-import { fileMap, getNoteName, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
+import { fileMap, getNoteName, getNoteChar, keyMap, type NoteIndex, type NoteTypes } from "@/_utils/maps";
 import { getWhiteKeyShape } from "@/_utils/helpers";
 import { IconTranspose, IconVolume } from "@/_components/Icons";
 
@@ -28,6 +28,7 @@ export const Piano = () => {
   const pressedKeys = useRef<Set<string>>(new Set());
   const pointerPressedNotes = useRef<Set<number>>(new Set());
   const [activeNotes, setActiveNotes] = useState<Set<number>>(new Set());
+  const [noteHistory, setNoteHistory] = useState<string>("");
   const sampler = useRef<Tone.Sampler>(null);
 
   useEffect(() => {
@@ -111,6 +112,10 @@ export const Piano = () => {
     if (!sampler.current) return;
     const noteName = getNoteName(noteIndex, transpose);
     sampler.current.triggerAttack(noteName);
+
+    const pressedChar = getNoteChar(noteIndex);
+    if (pressedChar) setNoteHistory((prev) => prev + pressedChar);
+
     return noteName;
   };
 
@@ -212,7 +217,7 @@ export const Piano = () => {
             <div id="screen">
               {isLoaded ? (
                 <>
-                  <div id="screen-content"></div>
+                  <div id="screen-content">{noteHistory}</div>
                   <div id="screen-settings">
                     <div className="setting" aria-label="Current volume" title="Current volume">
                       <IconVolume />
