@@ -41,7 +41,7 @@ Sonata — a simple, elegant, and accessible piano app.
 - [ ] ...
 - [x] Core Piano functions
 - [ ] Sustain (On/Off/Hold)
-- [ ] Note history
+- [x] Note history
 - [ ] Metronome
 - [x] Volume control
 - [x] Note transposition setting (-12, +12)
