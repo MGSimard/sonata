@@ -341,10 +341,22 @@ function PianoKey({
       className={`key ${isWhite ? "key-white" : "key-black"}${isPlaying ? " playing" : ""}${
         isWhite ? ` ${getWhiteKeyShape(note, isLastKey)}` : ""
       }`}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onPointerEnter={onPointerEnter}
-      onPointerLeave={onPointerLeave}
+      onPointerDown={(e) => {
+        e.preventDefault();
+        onPointerDown();
+      }}
+      onPointerUp={(e) => {
+        e.preventDefault();
+        onPointerUp();
+      }}
+      onPointerEnter={(e) => {
+        e.preventDefault();
+        onPointerEnter(e);
+      }}
+      onPointerLeave={(e) => {
+        e.preventDefault();
+        onPointerLeave();
+      }}
       style={
         isWhite
           ? undefined
