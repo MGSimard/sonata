@@ -458,7 +458,7 @@ summary {
   display: flex;
   background-color: var(--keyBlackShine);
   overflow-x: scroll;
-  scrollbar-color: var(--clrPianoBg) oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
+  scrollbar-color: var(--clrPianoShadow) transparent;
   touch-action: none;
   -webkit-user-drag: none;
 }
