@@ -1,19 +1,6 @@
-# Sonata
+# Sonata — a simple, elegant, and accessible piano app.
 
-Sonata — a simple, elegant, and accessible piano app.
-
-## Notes
-
-- Notes 1-88
-- Keyboard keys to nums
-- Apply transpose calc
-- Get matching note
-- Prevent out of bounds
-- Sustain OFF = same file but fade out early?
-- Base C2 -> C7, support -12 + 12? (C1-C8)
-- e.keyCode & e.charCode are deprecated
-- e.code maps to physical key
-- e.key maps to mapped key (final output)
+![image](https://github.com/user-attachments/assets/ff93ff12-f11a-460e-b55c-f127cceef478)
 
 ## Resources
 
