@@ -274,6 +274,7 @@ summary {
   color: var(--clrText);
   text-align: center;
 }
+
 #transpose-controls {
   position: absolute;
   left: 0;
@@ -281,6 +282,7 @@ summary {
   gap: 2rem;
   text-align: center;
 }
+
 #transpose-controls::after {
   content: "";
   position: absolute;
@@ -612,5 +614,14 @@ summary {
   100% {
     transform: unset;
     opacity: 1;
+  }
+}
+/* MEDIA QUERIES */
+@media only screen and (max-width: 768px) {
+  #transpose-controls {
+    position: relative;
+  }
+  #control-board {
+    flex-direction: column;
   }
 }

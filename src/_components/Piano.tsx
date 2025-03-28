@@ -195,25 +195,6 @@ export const Piano = () => {
       </div>
       <div id="piano-header">
         <div id="control-board">
-          <div id="transpose-controls">
-            <label htmlFor="transpose-controls">Transpose</label>
-            <div className="transpose-control">
-              <button
-                id="transpose-minus"
-                type="button"
-                onClick={() => adjustTranspose(-1)}
-                aria-label="Decrease"
-                title="Decrease"></button>
-            </div>
-            <div className="transpose-control">
-              <button
-                id="transpose-plus"
-                type="button"
-                onClick={() => adjustTranspose(1)}
-                aria-label="Increase"
-                title="Increase"></button>
-            </div>
-          </div>
           <div id="display">
             <div id="screen">
               {isLoaded ? (
@@ -233,6 +214,25 @@ export const Piano = () => {
               ) : (
                 <p>Loading...</p>
               )}
+            </div>
+          </div>
+          <div id="transpose-controls">
+            <label htmlFor="transpose-controls">Transpose</label>
+            <div className="transpose-control">
+              <button
+                id="transpose-minus"
+                type="button"
+                onClick={() => adjustTranspose(-1)}
+                aria-label="Decrease"
+                title="Decrease"></button>
+            </div>
+            <div className="transpose-control">
+              <button
+                id="transpose-plus"
+                type="button"
+                onClick={() => adjustTranspose(1)}
+                aria-label="Increase"
+                title="Increase"></button>
             </div>
           </div>
         </div>
