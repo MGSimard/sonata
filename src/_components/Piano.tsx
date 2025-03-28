@@ -190,9 +190,10 @@ export const Piano = () => {
 
   return (
     <section id="piano" className="noselect">
-      <div id="soundbar"></div>
-      <div id="piano-header">
+      <div id="soundbar">
         <h1>Sonata</h1>
+      </div>
+      <div id="piano-header">
         <div id="control-board">
           <div id="transpose-controls">
             <label htmlFor="transpose-controls">Transpose</label>

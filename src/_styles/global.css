@@ -242,6 +242,9 @@ summary {
   box-shadow: 0 2rem 2rem -1rem rgba(0, 0, 0, 0.2);
 }
 #soundbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 4rem;
   background-color: oklch(from var(--clrPianoBg) calc(l - 0.02) c h);
   background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='2.5' fill='rgba(0,0,0,0.2)'/%3E%3C/svg%3E");
@@ -250,15 +253,16 @@ summary {
   border-radius: calc(4rem - var(--pianoTrimWidth)) calc(4rem - var(--pianoTrimWidth)) 0 0;
   box-shadow: 0 0 0.1rem black;
 }
-#piano-header {
-  padding: 0 var(--pianoSidePadding);
-}
-#piano-header h1 {
+#piano h1 {
   font-size: 4rem;
   font-family: var(--displayFont);
-  font-weight: 500; /* Medium */
-  color: oklch(from var(--clrPianoBg) calc(l - 0.05) c h);
+  font-weight: 500;
+  color: var(--clrPianoBg);
   text-align: center;
+  line-height: 1;
+}
+#piano-header {
+  padding: 0 var(--pianoSidePadding);
 }
 #control-board {
   position: relative;
