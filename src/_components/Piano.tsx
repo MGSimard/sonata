@@ -341,42 +341,11 @@ function PianoKey({
       className={`key ${isWhite ? "key-white" : "key-black"}${isPlaying ? " playing" : ""}${
         isWhite ? ` ${getWhiteKeyShape(note, isLastKey)}` : ""
       }`}
-      onPointerDown={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onPointerDown();
-      }}
-      onPointerUp={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onPointerUp();
-      }}
-      onPointerEnter={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onPointerEnter(e);
-      }}
-      onPointerLeave={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onPointerLeave();
-      }}
-      onTouchStart={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
-      onTouchEnd={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
-      style={{
-        touchAction: "none",
-        ...(isWhite
-          ? undefined
-          : {
-              left: `calc(var(--keyWhiteWidth) * ${index} + var(--keyWhiteWidth) * 0.7)`,
-            }),
-      }}>
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
+      style={isWhite ? undefined : { left: `calc(var(--keyWhiteWidth) * ${index} + var(--keyWhiteWidth) * 0.7)` }}>
       <div className="key-core">{note.char}</div>
       <div className="key-bottom"></div>
     </button>
