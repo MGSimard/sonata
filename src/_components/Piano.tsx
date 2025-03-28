@@ -343,27 +343,40 @@ function PianoKey({
       }`}
       onPointerDown={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         onPointerDown();
       }}
       onPointerUp={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         onPointerUp();
       }}
       onPointerEnter={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         onPointerEnter(e);
       }}
       onPointerLeave={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         onPointerLeave();
       }}
-      style={
-        isWhite
+      onTouchStart={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+      onTouchEnd={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+      style={{
+        touchAction: "none",
+        ...(isWhite
           ? undefined
           : {
               left: `calc(var(--keyWhiteWidth) * ${index} + var(--keyWhiteWidth) * 0.7)`,
-            }
-      }>
+            }),
+      }}>
       <div className="key-core">{note.char}</div>
       <div className="key-bottom"></div>
     </button>
